@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files\application">
+      <UniqueIdentifier>{0d55cc04-eba6-4319-b3df-0417b5af2fc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gl">
+      <UniqueIdentifier>{af7c06f7-cddb-474f-b451-d65fd536b71e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\manager">
+      <UniqueIdentifier>{9a4983e5-25da-4297-953d-3654712a9a2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\image">
+      <UniqueIdentifier>{d29f1b61-3390-4d0e-a77d-8a11e81ddd27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\math">
+      <UniqueIdentifier>{8818282c-6e35-41c9-b117-aa6435d70adf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\application">
+      <UniqueIdentifier>{b59064a1-162f-464d-9478-50ce1853ffc3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gl">
+      <UniqueIdentifier>{30c96306-cb57-44a0-9c2c-ebc93ce6636e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\manager">
+      <UniqueIdentifier>{b5c7f22c-56e4-4128-a801-430cec2a405f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\image">
+      <UniqueIdentifier>{e07c3b6f-3de2-4b80-8e5f-3f10a2b526b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\math">
+      <UniqueIdentifier>{9ed7a11a-f8b3-4460-bd99-efab75f8c8f0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\coin\coin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\coin\application\Application.h">
+      <Filter>Header Files\application</Filter>
+    </ClInclude>
+    <ClInclude Include="include\coin\application\CommonStateInterface.h">
+      <Filter>Header Files\application</Filter>
+    </ClInclude>
+    <ClInclude Include="include\coin\application\ScreenConfig.h">
+      <Filter>Header Files\application</Filter>
+    </ClInclude>
+    <ClInclude Include="include\coin\application\State.h">
+      <Filter>Header Files\application</Filter>
+    </ClInclude>
+    <ClInclude Include="include\coin\application\StateApplication.h">
+      <Filter>Header Files\application</Filter>
+    </ClInclude>
+    <ClInclude Include="include\coin\gl\BufferObject.h">
+      <Filter>Header Files\gl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\coin\gl\Shader.h">
+      <Filter>Header Files\gl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\coin\gl\Texture.h">
+      <Filter>Header Files\gl</Filter>
+    </ClInclude>
+    <ClInclude Include="include\coin\manager\Manager.h">
+      <Filter>Header Files\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="include\coin\manager\ShaderManager.h">
+      <Filter>Header Files\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="include\coin\manager\TextureManager.h">
+      <Filter>Header Files\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="include\coin\image\Image.h">
+      <Filter>Header Files\image</Filter>
+    </ClInclude>
+    <ClInclude Include="include\coin\image\png.h">
+      <Filter>Header Files\image</Filter>
+    </ClInclude>
+    <ClInclude Include="include\coin\math\Matrix.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\coin\math\Vector.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\coin\gl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\coin.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\application\ScreenConfig.cc">
+      <Filter>Source Files\application</Filter>
+    </ClCompile>
+    <ClCompile Include="src\application\StateApplication.cc">
+      <Filter>Source Files\application</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gl\BufferObject.cc">
+      <Filter>Source Files\gl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gl\Shader.cc">
+      <Filter>Source Files\gl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gl\Texture.cc">
+      <Filter>Source Files\gl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\image\Image.cc">
+      <Filter>Source Files\image</Filter>
+    </ClCompile>
+    <ClCompile Include="src\image\png.cc">
+      <Filter>Source Files\image</Filter>
+    </ClCompile>
+    <ClCompile Include="src\manager\ShaderManager.cc">
+      <Filter>Source Files\manager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\manager\TextureManager.cc">
+      <Filter>Source Files\manager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\math\Matrix.cc">
+      <Filter>Source Files\math</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
