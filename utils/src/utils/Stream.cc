@@ -42,19 +42,32 @@ inline void write (Stream& stream, T in) {
 
 
 void Stream::ReadU8 (u8& out) {
+    out = 0;
     Read (&out, 1);
 }
 
 void Stream::ReadU16 (u16& out) {
+    out = 0;
     read<2> (*this, out);
 }
 
 void Stream::ReadU32 (u32& out) {
+    out = 0;
     read<4> (*this, out);
 }
 
 void Stream::ReadU64 (u64& out) {
+    out = 0;
     read<8> (*this, out);
+}
+
+void Stream::ReadString (std::string& out) {
+    u16 size; 
+    ReadU16 (size);
+    if (size > 0) {
+        out.resize (size);
+        Read ((u8*) &out[0], size);
+    }
 }
 
 void Stream::WriteU8 (u8 in) {

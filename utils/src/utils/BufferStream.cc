@@ -41,6 +41,7 @@ void BufferStream::SetPosition (const coin::Position position) {
 void BufferStream::Read (u8* buffer, const coin::Size buffer_size) {
     if (buffer_size + position_ > buffer_size_) {
         printf ("Read call exceeds buffer size!\n");
+        position_ = buffer_size_;
         return;
     }
     memcpy (buffer, buffer_ + position_, buffer_size);
@@ -51,6 +52,7 @@ void BufferStream::Read (u8* buffer, const coin::Size buffer_size) {
 void BufferStream::Write (const u8* buffer, const coin::Size buffer_size) {
     if (buffer_size + position_ > buffer_size_) {
         printf ("Write call exceeds buffer size!\n");
+        position_ = buffer_size_;
         return;
     }
     memcpy (buffer_ + position_, buffer, buffer_size);

@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 
+#include <string>
+
 #include <coin/coin.h>
 
 
@@ -44,6 +46,7 @@ class COIN_UTILS_DECL Stream {
     void ReadU16 (u16& out);
     void ReadU32 (u32& out);
     void ReadU64 (u64& out);
+    void ReadString (std::string& out);
 
     void WriteU8 (u8 in);
     void WriteU16 (u16 in);
