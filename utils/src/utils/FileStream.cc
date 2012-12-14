@@ -41,6 +41,7 @@ const Size FileStream::Size () {
     return size;
 }
 
+
 const u32 FileStream::Position () {
     return ftell (stream_);
 }
