@@ -41,61 +41,6 @@ class COIN_DECL Vector {
         return data[i];
     }
 
-
-
-    inline friend BASE operator+ (const BASE& lhs, const BASE& rhs) {
-        BASE out (false);
-        for (int i = 0; i < v_size; i++) {
-            out[i] = lhs[i] + rhs[i];
-        }
-        return out;
-    }
-
-    inline friend BASE operator- (const BASE& lhs, const BASE& rhs) {
-        BASE out (false);
-        for (int i = 0; i < v_size; i++) {
-            out[i] = lhs[i] - rhs[i];
-        }
-        return out;
-    }
-
-    /* Multiply with scalar. */
-    template <typename ST>
-    inline friend BASE operator* (const BASE& lhs, const ST scalar) {
-        BASE out (false);
-        for (int i = 0; i < v_size; i++) {
-            out[i] = lhs[i] * scalar;
-        }
-        return out;
-    }
-
-    /* Dot product. */
-    inline friend T operator* (const BASE& lhs, const BASE& rhs) {
-        T product = 0;
-        for (int i = 0; i < v_size; i++) {
-            product += lhs[i] * rhs[i];
-        }
-        return product;
-    }
-
-    inline T length () const {
-        T sum = 0;
-        for (int i = 0; i < v_size; i++) {
-            sum += this[i] * this[i];
-        }
-        return sqrt ((double) sum);
-    }
-
-    /* Normal vector. */
-    inline friend BASE operator~ (const BASE& vec) {
-        T len = vec.length ();
-        BASE out (false);
-        if (len > 0) {
-            out = vec * (((T) 1) / len);
-        }
-        return out;
-    }
-
     inline T& x () {
         return (*this)[0];
     }
@@ -114,6 +59,62 @@ class COIN_DECL Vector {
         return (*this)[3];
     }
 
+
+    /* Dot product. */
+    inline BASE dot (const BASE& with) {
+        T product = 0;
+        for (int i = 0; i < v_size; i++) {
+            product += this[i] * with[i];
+        }
+        return product;
+    }
+
+    /* Normal vector. */
+    inline BASE normal () {
+        T len = length ();
+        BASE out (false);
+        if (len > 0) {
+            out = (*this) * (((T) 1) / len);
+        }
+        return out;
+    }
+
+    inline T length () const {
+        T sum = 0;
+        for (int i = 0; i < v_size; i++) {
+            sum += this[i] * this[i];
+        }
+        return sqrt ((double) sum);
+    }
+
+    /* Add. */
+    inline friend BASE operator+ (const BASE& lhs, const BASE& rhs) {
+        BASE out (false);
+        for (int i = 0; i < v_size; i++) {
+            out[i] = lhs[i] + rhs[i];
+        }
+        return out;
+    }
+
+    /* Subtract. */
+    inline friend BASE operator- (const BASE& lhs, const BASE& rhs) {
+        BASE out (false);
+        for (int i = 0; i < v_size; i++) {
+            out[i] = lhs[i] - rhs[i];
+        }
+        return out;
+    }
+
+    /* Multiply with scalar. */
+    template <typename ST>
+    inline friend BASE operator* (const BASE& lhs, const ST scalar) {
+        BASE out (false);
+        for (int i = 0; i < v_size; i++) {
+            out[i] = lhs[i] * scalar;
+        }
+        return out;
+    }
+    
 };
 
 }

@@ -1,0 +1,4 @@
+
+
+
+- Check whether managers are cleared up correctly.

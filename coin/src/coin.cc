@@ -121,8 +121,8 @@ void Start (Application* application, Size window_width, Size window_height, boo
     SDL_GL_SetAttribute (SDL_GL_ACCUM_BLUE_SIZE,        8);
     SDL_GL_SetAttribute (SDL_GL_ACCUM_ALPHA_SIZE,       8);
     SDL_GL_SetAttribute (SDL_GL_STEREO,                 SDL_FALSE);
-    SDL_GL_SetAttribute (SDL_GL_MULTISAMPLEBUFFERS,     1);
-    SDL_GL_SetAttribute (SDL_GL_MULTISAMPLESAMPLES,     8);
+    SDL_GL_SetAttribute (SDL_GL_MULTISAMPLEBUFFERS,     0);
+    SDL_GL_SetAttribute (SDL_GL_MULTISAMPLESAMPLES,     0);
     SDL_GL_SetAttribute (SDL_GL_ACCELERATED_VISUAL,     1);
     SDL_GL_SetAttribute (SDL_GL_RETAINED_BACKING,       1);
     SDL_GL_SetAttribute (SDL_GL_CONTEXT_MAJOR_VERSION,  3);
@@ -161,6 +161,8 @@ void Start (Application* application, Size window_width, Size window_height, boo
         if (SDL_GL_SetSwapInterval (-1) == -1) {
             SDL_GL_SetSwapInterval (1);
         }
+    }else {
+        SDL_GL_SetSwapInterval (0);
     }
 
     glewExperimental = GL_TRUE; /* Enable all the CORE stuff you can use on NVidia! */
@@ -226,7 +228,7 @@ void Start (Application* application, Size window_width, Size window_height, boo
 
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32)
         DWORD threadId;
-        HANDLE thread = CreateThread (NULL, 0, Update, NULL, 0, &threadId);                      
+        HANDLE update_thread = CreateThread (NULL, 0, Update, NULL, 0, &threadId);                      
 #else
         thread update_thread (&Update);
 #endif
@@ -234,7 +236,7 @@ void Start (Application* application, Size window_width, Size window_height, boo
         SDL_GL_SwapWindow (window_);
 
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32)
-        WaitForSingleObject (thread, INFINITE);
+        WaitForSingleObject (update_thread, INFINITE);
 #else 
         update_thread.join ();
 #endif

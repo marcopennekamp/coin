@@ -41,7 +41,6 @@ char* ReadShaderSource (const char* path) {
 
 
 void ShaderManager::DeleteElement (Shader* element) {
-    glDeleteShader (element->handle ());
     delete element;
 }
 

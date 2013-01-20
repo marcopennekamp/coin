@@ -26,7 +26,7 @@ inline void read (Stream& stream, T& out) {
 template<typename T>
 inline void set (T in, u8* buffer, u32 pos) {
     const u32 shr = (sizeof(T) - (pos + 1)) * 8;
-    buffer[pos] = in >> shr;
+    buffer[pos] = (u8) (in >> shr);
 }
 
 template<u32 size, typename T>
