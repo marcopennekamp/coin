@@ -11,15 +11,15 @@ void Texture::StandardSetup (Texture* texture) {
     glPixelStorei (GL_UNPACK_ALIGNMENT, 4);
 }
 
-Texture::Texture (GLuint width, GLuint height) { 
+Texture::Texture (const GLuint width, const GLuint height) { 
     Init (width, height, Texture::StandardSetup);
 }
 
-Texture::Texture (GLuint width, GLuint height, Setup setup) {
+Texture::Texture (const GLuint width, const GLuint height, Setup setup) {
     Init (width, height, setup);  
 }
 
-void Texture::Init (GLuint width, GLuint height, Setup setup) {
+void Texture::Init (const GLuint width, const GLuint height, Setup setup) {
     width_ = width;
     height_ = height;
     setup_ = setup;
@@ -27,15 +27,15 @@ void Texture::Init (GLuint width, GLuint height, Setup setup) {
     AllocateTexture ();
 }
 
-Texture::Texture (Image& image) {
+Texture::Texture (const Image& image) {
     Init (image, StandardSetup);
 }
 
-Texture::Texture (Image& image, Setup setup) {
+Texture::Texture (const Image& image, Setup setup) {
     Init (image, setup);
 }
 
-void Texture::Init (Image& image, Setup setup) {
+void Texture::Init (const Image& image, Setup setup) {
     setup_ = setup;
     CreateHandle ();
     SetImage (image);
@@ -56,20 +56,19 @@ void Texture::AllocateTexture () {
     AllocateTexture (NULL);
 }
 
-void Texture::AllocateTexture (void* data) {
+void Texture::AllocateTexture (const void* data) {
     glBindTexture (GL_TEXTURE_2D, handle_);
-    setup_ (this);
     glTexImage2D (GL_TEXTURE_2D, 0, GL_RGBA8, width_, height_, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+    setup_ (this);
 }
 
-void Texture::SetImage (Image& image) {
+void Texture::SetImage (const Image& image) {
     width_ = image.width ();
     height_ = image.height ();
     AllocateTexture (image.data ());
 }
 
-void Texture::Bind (GLuint sampler_uniform, GLuint location) {
-    glUniform1i (sampler_uniform, location);
+void Texture::Bind (const GLuint location) {
     glActiveTexture (GL_TEXTURE0 + location);
     glBindTexture (GL_TEXTURE_2D, handle_);
 }

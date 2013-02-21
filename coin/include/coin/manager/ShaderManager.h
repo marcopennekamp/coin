@@ -11,14 +11,11 @@
 namespace coin {
 
 class ShaderManager : public Manager<Shader> {
-  private:
-    void DeleteElement (Shader* element);
-
   public:
     COIN_DECL ShaderManager (const std::string& load_path);
     COIN_DECL ~ShaderManager ();
 
-    COIN_DECL Shader* LoadElement (const std::string& path, bool persistent = false);
+    COIN_DECL Shader* LoadElement (const std::string& path, const bool persistent = false);
 };
 
 }

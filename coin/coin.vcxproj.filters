@@ -96,9 +96,6 @@
     <ClInclude Include="include\coin\gl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\coin\gl\TextureRegion.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\coin\gl\Framebuffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -136,9 +133,6 @@
     </ClCompile>
     <ClCompile Include="src\math\Matrix.cc">
       <Filter>Source Files\math</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gl\TextureRegion.cc">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\gl\Framebuffer.cc">
       <Filter>Source Files</Filter>

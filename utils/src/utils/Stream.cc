@@ -70,20 +70,28 @@ void Stream::ReadString (std::string& out) {
     }
 }
 
-void Stream::WriteU8 (u8 in) {
+void Stream::WriteU8 (const u8 in) {
     Write (&in, 1);
 }
 
-void Stream::WriteU16 (u16 in) {
+void Stream::WriteU16 (const u16 in) {
     write<2> (*this, in);
 }
 
-void Stream::WriteU32 (u32 in) {
+void Stream::WriteU32 (const u32 in) {
     write<4> (*this, in);
 }
 
-void Stream::WriteU64 (u64 in) {
+void Stream::WriteU64 (const u64 in) {
     write<8> (*this, in);
+}
+
+void Stream::WriteString (const std::string& in) {
+    u16 size = (u16) in.size (); 
+    WriteU16 (size);
+    if (size > 0) {
+        Write ((const u8*) in.data (), size);
+    }
 }
 
 

@@ -13,10 +13,10 @@ using namespace std;
 namespace coin {
 
 void Matrix4::Set (
-        float _00, float _01, float _02, float _03,
-        float _10, float _11, float _12, float _13,
-        float _20, float _21, float _22, float _23,
-        float _30, float _31, float _32, float _33
+        const float _00, const float _01, const float _02, const float _03,
+        const float _10, const float _11, const float _12, const float _13,
+        const float _20, const float _21, const float _22, const float _23,
+        const float _30, const float _31, const float _32, const float _33
 ) {
     data_[0]    = _00;
     data_[5]    = _11;
@@ -40,7 +40,7 @@ void Matrix4::Set (
     data_[14]   = _23;
 }
 
-void Matrix4::Set (float* matrix) {
+void Matrix4::Set (const float* matrix) {
     memcpy (&data_, matrix, sizeof (data_));
 }
 
@@ -64,8 +64,8 @@ void Matrix4::Identity () {
     data_[14]   = 0.0f;
 }
 
-void Matrix4::Multiply (Matrix4& withm, Matrix4& resultm) {
-    float* with = withm.data ();
+void Matrix4::Multiply (const Matrix4& withm, Matrix4& resultm) const {
+    const float* with = withm.data ();
     float* result = resultm.data ();
 
     /* First Column. */
@@ -282,21 +282,21 @@ bool Matrix4::Inverse () {
 }
 
 
-void Matrix4::CreateTranslationMatrix (float x, float y, float z) {
+void Matrix4::CreateTranslationMatrix (const float x, const float y, const float z) {
     Identity ();
     data_[12] = x;
     data_[13] = y;
     data_[14] = z;
 }
 
-void Matrix4::CreateScalationMatrix (float x, float y, float z) {
+void Matrix4::CreateScalationMatrix (const float x, const float y, const float z) {
     Identity ();
     data_[0] = x;
     data_[5] = y;
     data_[10] = z;
 }
 
-void Matrix4::CreateRotationXMatrix (float radians) {
+void Matrix4::CreateRotationXMatrix (const float radians) {
     Identity ();
     float c = cosf (radians);
     float s = sinf (radians);
@@ -306,7 +306,7 @@ void Matrix4::CreateRotationXMatrix (float radians) {
     data_[10] = c;
 }
 
-void Matrix4::CreateRotationYMatrix (float radians) {
+void Matrix4::CreateRotationYMatrix (const float radians) {
     Identity ();
     float c = cosf (radians);
     float s = sinf (radians);
@@ -316,7 +316,7 @@ void Matrix4::CreateRotationYMatrix (float radians) {
     data_[10] = c;
 }
 
-void Matrix4::CreateRotationZMatrix (float radians) {
+void Matrix4::CreateRotationZMatrix (const float radians) {
     Identity ();
     float c = cosf (radians);
     float s = sinf (radians);
@@ -327,10 +327,10 @@ void Matrix4::CreateRotationZMatrix (float radians) {
 }
 
 
-void Matrix4::Ortho (float left, float right, float bottom, float top, float near, float far) {
-    float width = right - left;
-    float height = top - bottom;
-    float fn = far - near;
+void Matrix4::Ortho (const float left, const float right, const float bottom, const float top, const float near, const float far) {
+    const float width = right - left;
+    const float height = top - bottom;
+    const float fn = far - near;
 
     Set (
         2 / width,  0.0f,           0.0f,       0.0f,
@@ -341,21 +341,20 @@ void Matrix4::Ortho (float left, float right, float bottom, float top, float nea
 }
 
 
-void Matrix4::Perspective (float aov, float aspect, float near, float far) {
-    float xymax = near * tanf (aov * (float) M_PI / 180.0f / 2.0f);
-    float ymin = -xymax;
-    float xmin = -xymax;
+void Matrix4::Perspective (const float aov, const float aspect, const float near, const float far) {
+    const float xymax = near * tanf (aov * (float) M_PI / 180.0f / 2.0f);
+    const float ymin = -xymax;
+    const float xmin = -xymax;
 
-    float width = xymax - xmin;
-    float height = xymax - ymin;
+    const float width = xymax - xmin;
+    const float height = xymax - ymin;
 
-    float depth = far - near;
-    float q = -(far + near) / depth;
-    float qn = -2 * (far * near) / depth;
+    const float depth = far - near;
+    const float q = -(far + near) / depth;
+    const float qn = -2 * (far * near) / depth;
 
-    float w = 2 * near / width;
-    w = w / aspect;
-    float h = 2 * near / height;
+    const float w = (2 * near / width) / aspect;
+    const float h = 2 * near / height;
 
     Set (
         w,     0.0f,  0.0f,   0.0f,
@@ -367,7 +366,7 @@ void Matrix4::Perspective (float aov, float aspect, float near, float far) {
 }
 
 
-void Matrix4::Print () {
+void Matrix4::Print () const {
     // TODO(Marco): Change to fleeLog ...
     cout << data_[0] << "\t\t" << data_[4] << "\t\t" << data_[8] << "\t\t" << data_[12] << endl;
     cout << data_[1] << "\t\t" << data_[5] << "\t\t" << data_[9] << "\t\t" << data_[13] << endl;

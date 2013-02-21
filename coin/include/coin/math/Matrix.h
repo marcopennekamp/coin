@@ -15,29 +15,30 @@ class COIN_DECL Matrix4 {
 
   public:
     void Set (
-        float _00, float _01, float _02, float _03,
-        float _10, float _11, float _12, float _13,
-        float _20, float _21, float _22, float _23,
-        float _30, float _31, float _32, float _33
+        const float _00, const float _01, const float _02, const float _03,
+        const float _10, const float _11, const float _12, const float _13,
+        const float _20, const float _21, const float _22, const float _23,
+        const float _30, const float _31, const float _32, const float _33
     );
-    void Set (float*);
+    void Set (const float* new_data);
 
     void Identity ();
-    void Multiply (Matrix4& with, Matrix4& result);
+    void Multiply (const Matrix4& with, Matrix4& result) const;
     bool Inverse ();
 
-    void CreateTranslationMatrix (float x, float y, float z);
-    void CreateScalationMatrix (float x, float y, float z);
-    void CreateRotationXMatrix (float radians);
-    void CreateRotationYMatrix (float radians);
-    void CreateRotationZMatrix (float radians);
+    void CreateTranslationMatrix (const float x, const float y, const float z);
+    void CreateScalationMatrix (const float x, const float y, const float z);
+    void CreateRotationXMatrix (const float radians);
+    void CreateRotationYMatrix (const float radians);
+    void CreateRotationZMatrix (const float radians);
 
-    void Ortho (float left, float right, float bottom, float top, float near, float far);
-    void Perspective (float aov, float aspect, float near, float far);
+    void Ortho (const float left, const float right, const float bottom, const float top, const float near, const float far);
+    void Perspective (const float aov, const float aspect, const float near, const float far);
 
-    void Print ();
+    void Print () const;
 
     inline float* data () { return data_; }
+    inline const float* data () const { return data_; }
 };
 
 }

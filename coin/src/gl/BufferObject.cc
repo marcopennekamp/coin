@@ -3,7 +3,7 @@
 
 namespace coin {
 
-BufferObject::BufferObject (GLenum type) {
+BufferObject::BufferObject (const GLenum type) {
     type_ = type;
     glGenBuffers (1, &handle_);
 }
@@ -14,12 +14,12 @@ BufferObject::~BufferObject () {
 }
 
 
-void BufferObject::Allocate (GLsizeiptr size, GLenum drawMode) {
+void BufferObject::Allocate (const GLsizeiptr size, const GLenum drawMode) {
     glBufferData (type_, size, NULL, drawMode);
 }
 
 
-void BufferObject::BufferData (void* data, GLsizei data_size, GLintptr buffer_offset) {
+void BufferObject::BufferData (const void* data, const GLsizei data_size, const GLintptr buffer_offset) {
     glBufferSubData (type_, buffer_offset, data_size, data);
 }
 

@@ -15,7 +15,7 @@ private:
     Texture texture_;
 
 public:
-    Framebuffer (Size width, Size height);
+    Framebuffer (const Size width, const Size height);
     ~Framebuffer ();
 
     void Bind ();

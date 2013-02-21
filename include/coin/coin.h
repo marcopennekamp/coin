@@ -36,7 +36,7 @@ typedef s32                     RelativePosition;
 typedef s32                     Key;
 typedef s32                     MouseButton;
 
-COIN_DECL void Start (Application* application, Size window_width, Size window_height, bool fullscreen, bool vsync);
+COIN_DECL void Start (Application* application, const Size window_width, const Size window_height, const bool fullscreen, const bool vsync);
 COIN_DECL void Stop ();
 
 }

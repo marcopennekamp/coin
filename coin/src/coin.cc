@@ -70,6 +70,11 @@ void OnPointerUp (MouseButton button, Position x, Position y) {
     application_->GetState ().MouseUp (button, x, y);
 }
 
+void OnMouseWheelScrolled (RelativePosition scroll) {
+    application_->MouseWheelScrolled (scroll);
+    application_->GetState ().MouseWheelScrolled (scroll);
+}
+
 void OnKeyDown (Key key) {
     application_->KeyDown (key);
     application_->GetState ().KeyDown (key);
@@ -95,14 +100,13 @@ void application_Destroy () {
 }
 
 
-void Start (Application* application, Size window_width, Size window_height, bool fullscreen, bool vsync) {
+void Start (Application* application, const Size window_width, const Size window_height, const bool fullscreen, const bool vsync) {
     application_ = application;
 
     TimeInit ();
 
     /* Set OpenGL parameters */
     SDL_DisplayMode display_mode;
-
     if (SDL_VideoInit (NULL) < 0) {
         printf ("Couldn't initialize video driver: %s\n", SDL_GetError ());
         return;
@@ -132,7 +136,6 @@ void Start (Application* application, Size window_width, Size window_height, boo
     display_mode.format = SDL_PIXELFORMAT_RGBA8888;
     display_mode.w = window_width;
     display_mode.h = window_height;
-    // display_mode.refresh_rate = 50;
 
     int flags =  SDL_WINDOW_OPENGL;
     if (fullscreen) flags |= SDL_WINDOW_FULLSCREEN;
@@ -187,10 +190,6 @@ void Start (Application* application, Size window_width, Size window_height, boo
     application_InitGl ();
     application_Resize (window_width, window_height);
 
-    SDL_SetWindowGrab (window_, SDL_TRUE);
-    SDL_SetRelativeMouseMode (SDL_TRUE);
-    SDL_ShowCursor (SDL_FALSE);
-
     /* Game loop. */
     SDL_Event event;
     running_ = true;
@@ -213,8 +212,10 @@ void Start (Application* application, Size window_width, Size window_height, boo
                     OnPointerUp (event.button.button, event.button.x, event.button.y);
                     break;
                 case SDL_MOUSEMOTION:
-                    // OnPointerMoved (event.motion.x - window_width / 2, event.motion.y - window_height / 2);
                     OnPointerMoved (event.motion.xrel, event.motion.yrel);
+                    break;
+                case SDL_MOUSEWHEEL:
+                    OnMouseWheelScrolled (event.wheel.y);
                     break;
                 case SDL_QUIT: /* Window closed. */
                     running_ = false;
@@ -222,9 +223,11 @@ void Start (Application* application, Size window_width, Size window_height, boo
             }
         }
 
-        SDL_EventState (SDL_MOUSEMOTION, SDL_IGNORE);
-        SDL_WarpMouseInWindow (window_, window_width / 2, window_height / 2);
-        SDL_EventState (SDL_MOUSEMOTION, SDL_ENABLE);
+        if (application->GetState ().GrabMouse ()) {
+            SDL_EventState (SDL_MOUSEMOTION, SDL_IGNORE);
+            SDL_WarpMouseInWindow (window_, window_width / 2, window_height / 2);
+            SDL_EventState (SDL_MOUSEMOTION, SDL_ENABLE);
+        }
 
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32)
         DWORD threadId;
@@ -255,6 +258,10 @@ void Start (Application* application, Size window_width, Size window_height, boo
 
 void Stop () {
     running_ = false;
+}
+
+SDL_Window* GetWindow () {
+    return window_;
 }
 
 }

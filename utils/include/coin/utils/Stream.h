@@ -23,13 +23,10 @@ enum T {
 
 class COIN_UTILS_DECL Stream {
   protected:
-    StreamMode::T mode_;
+    const StreamMode::T mode_;
 
   public:
-    Stream (const StreamMode::T mode) {
-        mode_ = mode;
-    }
-
+    Stream (const StreamMode::T mode) : mode_ (mode) { }
     virtual ~Stream () { }
 
     virtual const coin::Size Size () { return 0; }
@@ -48,10 +45,11 @@ class COIN_UTILS_DECL Stream {
     void ReadU64 (u64& out);
     void ReadString (std::string& out);
 
-    void WriteU8 (u8 in);
-    void WriteU16 (u16 in);
-    void WriteU32 (u32 in);
-    void WriteU64 (u64 in);
+    void WriteU8 (const u8 in);
+    void WriteU16 (const u16 in);
+    void WriteU32 (const u32 in);
+    void WriteU64 (const u64 in);
+    void WriteString (const std::string& in);
 
     inline StreamMode::T mode () { return mode_; }
 };

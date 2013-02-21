@@ -21,8 +21,8 @@ private:
 
     Setup setup_;
 
-    void Init (GLuint width, GLuint height, Setup setup);
-    void Init (Image& image, Setup setup);
+    void Init (const GLuint width, const GLuint height, Setup setup);
+    void Init (const Image& image, Setup setup);
     void CreateHandle ();
 
 public:
@@ -31,38 +31,38 @@ public:
     /*
      * Allocates the texture.
      */
-    Texture (GLuint width, GLuint height);
-    Texture (GLuint width, GLuint height, Setup setup);
+    Texture (const GLuint width, const GLuint height);
+    Texture (const GLuint width, const GLuint height, Setup setup);
 
     /* 
      * Uses the image to construct the texture with 'SetImage'.
      */
-    Texture (Image& image);
-    Texture (Image& image, Setup setup);
+    Texture (const Image& image);
+    Texture (const Image& image, Setup setup);
 
     ~Texture ();
 
 
 
     void AllocateTexture ();
-    void AllocateTexture (void* data);
+    void AllocateTexture (const void* data);
 
     /* 
      * Allocates the Texture.
      */
-    void SetImage (Image& image);
+    void SetImage (const Image& image);
 
     /*
      * Binds the texture to the texture unit 'location'.
      */
-    void Bind (GLuint uniform, GLuint location = 0);
+    void Bind (const GLuint location);
     
-    inline Setup setup () { return setup_; }
+    inline Setup setup () const { return setup_; }
     inline void setup (Setup setup) { setup_ = setup; }
 
-    inline GLuint handle () { return handle_; }
-    inline Size width () { return width_; }
-    inline Size height () { return height_; }
+    inline GLuint handle () const { return handle_; }
+    inline Size width () const { return width_; }
+    inline Size height () const { return height_; }
 };
 
 }

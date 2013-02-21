@@ -13,11 +13,11 @@ class COIN_DECL ScreenConfig {
     float aspect_ratio_;
 
   public:
-    void Resize (Size width, Size height);
+    void Resize (const Size width, const Size height);
 
-    inline Size width () { return width_; }
-    inline Size height () { return height_; }
-    inline float aspect_ratio () { return aspect_ratio_; }
+    inline Size width () const { return width_; }
+    inline Size height () const { return height_; }
+    inline float aspect_ratio () const { return aspect_ratio_; }
 };
 
 

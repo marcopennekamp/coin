@@ -15,16 +15,14 @@ namespace coin {
 
 class TextureManager : public Manager<Texture> {
 protected:
-    void DeleteElement (Texture* element);
-
     Texture::Setup texture_setup_;
 
 public:
     COIN_DECL TextureManager (const std::string& load_path, Texture::Setup texture_setup = Texture::StandardSetup);
     COIN_DECL ~TextureManager ();
 
-    COIN_DECL Texture* LoadElement (const std::string& path, bool persistent = false);
-    COIN_DECL Texture* LoadElement (const std::string& path, bool persistent, Texture::Setup texture_setup);
+    COIN_DECL Texture* LoadElement (const std::string& path, const bool persistent = false);
+    COIN_DECL Texture* LoadElement (const std::string& path, const bool persistent, Texture::Setup texture_setup);
 };
 
 }

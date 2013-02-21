@@ -26,7 +26,7 @@ void TimeInit () {
     // TODO Throw error!
 }
 
-Time TimeNanoseconds () {
+const Time TimeNanoseconds () {
     LARGE_INTEGER time;
     QueryPerformanceCounter (&time);
     return (u64) (time.QuadPart / frequency_nanoseconds);

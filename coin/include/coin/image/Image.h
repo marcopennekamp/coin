@@ -24,9 +24,9 @@ class COIN_DECL Image {
      */
     void Free ();
 
-    inline const Size width () { return width_; }
-    inline const Size height () { return height_; }
-    inline u32* data () { return data_; }
+    inline const Size width () const { return width_; }
+    inline const Size height () const { return height_; }
+    inline u32* data () const { return data_; }
 };
 
 }

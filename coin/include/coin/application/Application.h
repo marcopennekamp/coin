@@ -16,7 +16,7 @@ class COIN_DECL Application : public CommonStateInterface {
 
     virtual State& GetState () = 0;
     virtual void InitGl () { }
-    virtual void Resize (Size width, Size height) { }
+    virtual void Resize (const Size width, const Size height) { }
     virtual void Destroy () { }
 };
 

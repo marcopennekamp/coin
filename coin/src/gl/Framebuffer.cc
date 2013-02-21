@@ -17,7 +17,7 @@ void _TextureSetup (Texture* texture) {
 }
 
 
-Framebuffer::Framebuffer (Size width, Size height) : texture_ (width, height, _TextureSetup) {
+Framebuffer::Framebuffer (const Size width, const Size height) : texture_ (width, height, _TextureSetup) {
     /* Generate framebuffer. */
     glGenFramebuffers (1, &handle_);
     

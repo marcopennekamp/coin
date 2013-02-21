@@ -116,7 +116,7 @@ bool PngLoad (Stream& stream, Image& image) {
 }
 
 
-bool PngSave (Stream& stream, Image& image, bool flipped) {
+bool PngSave (Stream& stream, Image& image, const bool flipped) {
      /* Check if stream is WRITE stream. */
     if (stream.mode () != StreamMode::write) {
         printf ("Supplied stream is not a write stream.\n");

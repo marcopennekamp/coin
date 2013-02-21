@@ -1,5 +1,5 @@
-#ifndef COIN_MATH_VECTOR2_H_
-#define COIN_MATH_VECTOR2_H_
+#ifndef COIN_MATH_VECTOR_H_
+#define COIN_MATH_VECTOR_H_
 
 #include <stdarg.h>
 #include <math.h>
@@ -19,7 +19,7 @@ class COIN_DECL Vector {
     typedef Vector<v_size, T> BASE;
 
   public:
-    inline Vector (bool clear = true) {
+    inline Vector (const bool clear = true) {
         if (clear) {
             for (int i = 0; i < v_size; i++) {
                 (*this)[i] = (T) 0;
@@ -61,7 +61,7 @@ class COIN_DECL Vector {
 
 
     /* Dot product. */
-    inline BASE dot (const BASE& with) {
+    inline BASE dot (const BASE& with) const {
         T product = 0;
         for (int i = 0; i < v_size; i++) {
             product += this[i] * with[i];
@@ -70,7 +70,7 @@ class COIN_DECL Vector {
     }
 
     /* Normal vector. */
-    inline BASE normal () {
+    inline BASE normal () const {
         T len = length ();
         BASE out (false);
         if (len > 0) {
@@ -119,4 +119,4 @@ class COIN_DECL Vector {
 
 }
 
-#endif  /* COIN_MATH_VECTOR2_H_ */
+#endif  /* COIN_MATH_VECTOR_H_ */

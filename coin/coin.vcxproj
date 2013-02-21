@@ -127,7 +127,7 @@
       <FloatingPointModel>Fast</FloatingPointModel>
     </ClCompile>
     <Link>
-      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <NoEntryPoint>false</NoEntryPoint>
@@ -146,7 +146,6 @@
     <ClInclude Include="include\coin\gl\Framebuffer.h" />
     <ClInclude Include="include\coin\gl\Shader.h" />
     <ClInclude Include="include\coin\gl\Texture.h" />
-    <ClInclude Include="include\coin\gl\TextureRegion.h" />
     <ClInclude Include="include\coin\image\Image.h" />
     <ClInclude Include="include\coin\image\png.h" />
     <ClInclude Include="include\coin\manager\Manager.h" />
@@ -163,7 +162,6 @@
     <ClCompile Include="src\gl\Framebuffer.cc" />
     <ClCompile Include="src\gl\Shader.cc" />
     <ClCompile Include="src\gl\Texture.cc" />
-    <ClCompile Include="src\gl\TextureRegion.cc" />
     <ClCompile Include="src\image\Image.cc" />
     <ClCompile Include="src\image\png.cc" />
     <ClCompile Include="src\manager\ShaderManager.cc" />

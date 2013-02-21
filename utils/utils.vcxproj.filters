@@ -24,6 +24,9 @@
     <ClInclude Include="include\coin\utils\time.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\coin\utils\Array.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\utils\directory.cc">

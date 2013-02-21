@@ -18,8 +18,15 @@
 #include <SDL2/SDL.h>
 
 
-inline char* BufferOffset (GLuint offset) {
+inline char* BufferOffset (const GLuint offset) {
     return (char*) NULL + offset;
 }
+
+namespace coin {
+
+SDL_Window* GetWindow ();
+
+}
+
 
 #endif  /* COIN_GL_H_ */

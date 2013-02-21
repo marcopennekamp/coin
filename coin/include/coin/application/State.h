@@ -12,6 +12,8 @@ class COIN_DECL State : public CommonStateInterface {
     State () { }
     virtual ~State () { }
     virtual void Init () { }
+
+    virtual bool GrabMouse () { return false; }
 };
 
 }

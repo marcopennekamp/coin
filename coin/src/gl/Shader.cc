@@ -34,7 +34,7 @@ GLuint _GetGLTypeSize (GLenum type) {
 
 }
 
-Shader::Shader (GLuint handle) {
+Shader::Shader (const GLuint handle) {
     handle_ = handle;
     uniforms_ = new std::map<std::string, GLint> ();
 }
@@ -47,7 +47,7 @@ void Shader::Bind () {
     glUseProgram (handle_);
 }
 
-void Shader::RegisterAttributes (const Attribute* attributes, size_t length) {
+void Shader::RegisterAttributes (const Attribute* attributes, const size_t length) {
     /* Find and enable attributes.*/
     GLuint offset = 0;
     for (size_t i = 0; i < length; ++i) {
@@ -72,21 +72,21 @@ void Shader::RegisterAttributes (const Attribute* attributes, size_t length) {
     }
 }
     
-void Shader::SetUniformi (const std::string& name, GLint v0) {
+void Shader::SetUniformi (const std::string& name, const GLint v0) {
     GLint location = GetUniform (name);
     if (location >= 0) {
         glUniform1i (location, v0);
     }
 }
 
-void Shader::SetUniformu (const std::string& name, GLuint v0) {
+void Shader::SetUniformu (const std::string& name, const GLuint v0) {
     GLint location = GetUniform (name);
     if (location >= 0) {
         glUniform1ui (location, v0);
     }
 }
 
-void Shader::SetUniformMatrix4f (const std::string& name, GLsizei count, GLboolean transpose, const GLfloat* value) {
+void Shader::SetUniformMatrix4f (const std::string& name, const GLsizei count, const GLboolean transpose, const GLfloat* value) {
     GLint location = GetUniform (name);
     if (location >= 0) {
         glUniformMatrix4fv (location, count, transpose, value);

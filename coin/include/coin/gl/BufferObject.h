@@ -13,16 +13,16 @@ class COIN_DECL BufferObject {
     GLenum type_;
 
   public:
-    BufferObject (GLenum type);
+    BufferObject (const GLenum type);
     ~BufferObject ();
 
-    void Allocate (GLsizeiptr size, GLenum drawMode);
-    void BufferData (void* data, GLsizei data_size, GLintptr buffer_offset = 0L);
+    void Allocate (const GLsizeiptr size, const GLenum drawMode);
+    void BufferData (const void* data, const GLsizei data_size, const GLintptr buffer_offset = 0L);
     void Bind ();
     void Unbind ();
 
-    inline GLuint handle () { return handle_; }
-    inline GLenum type () { return type_; }
+    inline GLuint handle () const { return handle_; }
+    inline GLenum type () const { return type_; }
 };
 
 }

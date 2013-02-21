@@ -1,5 +1,6 @@
 #include <stdlib.h>
 
+#include <coin/gl.h>
 #include <coin/application/State.h>
 #include <coin/application/StateApplication.h>
 
@@ -30,6 +31,11 @@ void StateApplication::ChangeState (State* state) {
 void StateApplication::Render () {
     if (init_state_) {
         state_->Init ();
+        if (state_->GrabMouse ()) {
+            SDL_SetWindowGrab (GetWindow (), SDL_TRUE);
+            SDL_SetRelativeMouseMode (SDL_TRUE);
+            SDL_ShowCursor (SDL_FALSE);
+        }
         init_state_ = false;
     }
 }

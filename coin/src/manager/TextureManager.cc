@@ -13,14 +13,6 @@ using namespace std;
 
 namespace coin {
 
-
-void TextureManager::DeleteElement (Texture* element) {
-    GLuint id = element->handle ();
-    glDeleteTextures (1, &id);
-    delete element;
-}
-
-
 TextureManager::TextureManager (const std::string& load_path, Texture::Setup texture_setup) : Manager<Texture> (load_path) {
     texture_setup_ = texture_setup;
 }
@@ -31,12 +23,12 @@ TextureManager::~TextureManager () {
 }
 
 
-Texture* TextureManager::LoadElement (const string& path, bool persistent) {
+Texture* TextureManager::LoadElement (const string& path, const bool persistent) {
     return LoadElement (path, persistent, texture_setup_);
 }
 
 
-Texture* TextureManager::LoadElement (const string& path, bool persistent, Texture::Setup texture_setup) {
+Texture* TextureManager::LoadElement (const string& path, const bool persistent, Texture::Setup texture_setup) {
     FileStream stream ((load_path_ + "/" + path).c_str (), StreamMode::read);
     Image image;
     PngLoad (stream, image);

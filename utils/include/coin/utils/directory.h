@@ -19,12 +19,12 @@ COIN_UTILS_DECL void Crawl (const std::string& directory_name, std::function<voi
 /* 
  * Whether the specified file path is a directory.
  */
-COIN_UTILS_DECL bool IsDirectory (const char* name);
+COIN_UTILS_DECL bool IsDirectory (const std::string& directory_name);
 
 /*
  * Creates all directories named in the path.
  */
-COIN_UTILS_DECL void MakeDirectories (const std::string& path, bool last_name_is_directory);
+COIN_UTILS_DECL void MakeDirectories (const std::string& path, const bool last_name_is_directory);
 
 }
 }

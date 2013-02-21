@@ -8,9 +8,9 @@ using namespace std;
 namespace coin {
 namespace Directory {
 
-bool IsDirectory (const char* name) {
+bool IsDirectory (const std::string& directory_name) {
     WIN32_FILE_ATTRIBUTE_DATA data;
-    BOOL success = GetFileAttributesEx (name, GetFileExInfoStandard, &data);
+    BOOL success = GetFileAttributesEx (directory_name.c_str (), GetFileExInfoStandard, &data);
     return success && (data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) > 0;
 }
 

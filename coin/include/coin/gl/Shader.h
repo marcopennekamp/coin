@@ -51,11 +51,11 @@ public:
     void Bind ();
 
     /* Bind the VAO before. This call unbinds the VAO. */
-    void RegisterAttributes (const Attribute* attributes, size_t length);
+    void RegisterAttributes (const Attribute* attributes, const size_t length);
     
-    void SetUniformi (const std::string& name, GLint a);
-    void SetUniformu (const std::string& name, GLuint a);
-    void SetUniformMatrix4f (const std::string& name, GLsizei count, GLboolean transpose, const GLfloat* value);
+    void SetUniformi (const std::string& name, const GLint a);
+    void SetUniformu (const std::string& name, const GLuint a);
+    void SetUniformMatrix4f (const std::string& name, const GLsizei count, const GLboolean transpose, const GLfloat* value);
 
 
     GLint GetUniform (const std::string& name);

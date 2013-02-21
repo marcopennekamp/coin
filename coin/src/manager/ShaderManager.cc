@@ -10,7 +10,6 @@ using namespace std;
 
 namespace coin {
 
-
 namespace {
 
 void printLog (GLuint shader) {
@@ -24,7 +23,6 @@ void printLog (GLuint shader) {
     printf (text);
     delete log;
 }
-
 
 char* ReadShaderSource (const char* path) {
     FileStream stream (path, StreamMode::read);
@@ -40,22 +38,15 @@ char* ReadShaderSource (const char* path) {
 }
 
 
-void ShaderManager::DeleteElement (Shader* element) {
-    delete element;
-}
-
-
 ShaderManager::ShaderManager (const std::string& load_path) : Manager (load_path) {
 
 }
-
 
 ShaderManager::~ShaderManager () {
 
 }
 
-
-Shader* ShaderManager::LoadElement (const std::string& path, bool persistent) {
+Shader* ShaderManager::LoadElement (const std::string& path, const bool persistent) {
     string local_path = load_path_ + "\\" + path;
     string final_path = local_path;
     final_path += ".vs";
@@ -115,6 +106,5 @@ Shader* ShaderManager::LoadElement (const std::string& path, bool persistent) {
     RegisterElement (path, shader, persistent);
     return shader;
 }
-
 
 }

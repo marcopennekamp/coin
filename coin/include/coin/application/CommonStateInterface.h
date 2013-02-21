@@ -15,11 +15,12 @@ class COIN_DECL CommonStateInterface {
     virtual void Render () { }
     virtual void OnPause () { }
     virtual void OnResume () { }
-    virtual void MouseDown (MouseButton b, Position x, Position y) { }
-    virtual void MouseMoved (RelativePosition x, RelativePosition y) { }
-    virtual void MouseUp (MouseButton b, Position x, Position y) { }
-    virtual void KeyDown (Key key) { }
-    virtual void KeyUp (Key key) { }
+    virtual void MouseDown (const MouseButton b, const Position x, const Position y) { }
+    virtual void MouseMoved (const RelativePosition x, const RelativePosition y) { }
+    virtual void MouseUp (const MouseButton b, const Position x, const Position y) { }
+    virtual void MouseWheelScrolled (const RelativePosition scroll) { }
+    virtual void KeyDown (const Key key) { }
+    virtual void KeyUp (const Key key) { }
 };
 
 }
