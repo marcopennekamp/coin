@@ -35,9 +35,6 @@
     <ClCompile Include="src\utils\windows\time.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\utils\windows\directory_windows.cc">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\utils\FileStream.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -45,6 +42,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\utils\Stream.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\windows\directory.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

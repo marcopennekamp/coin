@@ -84,9 +84,12 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <TargetExt>.dll</TargetExt>
-    <IncludePath>..\..\include;include;..\include;$(IncludePath)</IncludePath>
-    <LibraryPath>..\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\..\include;$(SolutionDir)\include;include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\..\lib;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <SourcePath>$(SolutionDir)\utils\src;$(SourcePath)</SourcePath>
+    <GenerateManifest>false</GenerateManifest>
+    <TargetName>coin-$(ProjectName)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -134,11 +137,14 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <ObjectFileName>$(IntDir)/%(RelativeDir)/</ObjectFileName>
+      <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -152,7 +158,7 @@
     <ClCompile Include="src\utils\directory.cc" />
     <ClCompile Include="src\utils\FileStream.cc" />
     <ClCompile Include="src\utils\Stream.cc" />
-    <ClCompile Include="src\utils\windows\directory_windows.cc" />
+    <ClCompile Include="src\utils\windows\directory.cc" />
     <ClCompile Include="src\utils\windows\time.cc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
