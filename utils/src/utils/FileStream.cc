@@ -1,11 +1,11 @@
-#define _CRT_SECURE_NO_DEPRECATE
+// #define _CRT_SECURE_NO_DEPRECATE
 
 #include <coin/utils/Stream.h>
 
 
 namespace coin {
 
-FileStream::FileStream (const char* path, const StreamMode::T mode) : Stream (mode) {
+FileStream::FileStream (const std::string& path, const StreamMode::T mode) : Stream (mode) {
     const char* fopen_mode;
     if (mode_ == StreamMode::read) {
         fopen_mode = "rb";
@@ -15,9 +15,9 @@ FileStream::FileStream (const char* path, const StreamMode::T mode) : Stream (mo
         fopen_mode = "ab";
     }
 
-    stream_ = fopen (path, fopen_mode);
+    fopen_s (&stream_ , path.c_str (), fopen_mode);
     if (stream_ == NULL) {
-        printf ("Could not open file '%s'.\n", path);
+        printf ("Could not open file '%s'.\n", path.c_str ());
         fflush (stdout);
     }
 }

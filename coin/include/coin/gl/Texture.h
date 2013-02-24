@@ -5,64 +5,38 @@
 
 #include <coin/coin.h>
 #include <coin/gl.h>
-#include <coin/image/Image.h>
+#include <coin/resource/Element.h>
+#include <coin/resource/Image.h>
 
 
 namespace coin {
 
-class COIN_DECL Texture {
+class COIN_DECL Texture : public Element {
 public:
     typedef void (*Setup) (Texture*);
 
-private:
+protected:
     GLuint handle_;
-    Size width_;
-    Size height_;
 
-    Setup setup_;
-
-    void Init (const GLuint width, const GLuint height, Setup setup);
-    void Init (const Image& image, Setup setup);
+    void ApplyTextureSetup (Setup setup);
     void CreateHandle ();
 
+    virtual void TextureSetup () = 0;
+
 public:
-    static void StandardSetup (Texture* texture);
+    virtual ~Texture ();
 
-    /*
-     * Allocates the texture.
-     */
-    Texture (const GLuint width, const GLuint height);
-    Texture (const GLuint width, const GLuint height, Setup setup);
+    virtual void BufferData (const void* data) = 0;
 
-    /* 
-     * Uses the image to construct the texture with 'SetImage'.
-     */
-    Texture (const Image& image);
-    Texture (const Image& image, Setup setup);
-
-    ~Texture ();
-
-
-
-    void AllocateTexture ();
-    void AllocateTexture (const void* data);
-
-    /* 
-     * Allocates the Texture.
-     */
-    void SetImage (const Image& image);
+    bool Load (const std::string& path);
+    virtual bool Load (const std::string& path, Setup setup) = 0;
 
     /*
      * Binds the texture to the texture unit 'location'.
      */
-    void Bind (const GLuint location);
-    
-    inline Setup setup () const { return setup_; }
-    inline void setup (Setup setup) { setup_ = setup; }
+    virtual void Bind (const GLuint location) = 0;
 
     inline GLuint handle () const { return handle_; }
-    inline Size width () const { return width_; }
-    inline Size height () const { return height_; }
 };
 
 }

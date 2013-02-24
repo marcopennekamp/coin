@@ -56,11 +56,11 @@ class COIN_UTILS_DECL Stream {
 
 
 class COIN_UTILS_DECL FileStream : public Stream {
-  private:
+private:
     FILE* stream_;
 
-  public:
-    FileStream (const char* path, const StreamMode::T mode);
+public:
+    FileStream (const std::string& path, const StreamMode::T mode);
     ~FileStream ();
 
     const coin::Size Size ();

@@ -34,13 +34,14 @@ GLuint _GetGLTypeSize (GLenum type) {
 
 }
 
-Shader::Shader (const GLuint handle) {
-    handle_ = handle;
-    uniforms_ = new std::map<std::string, GLint> ();
+Shader::Shader () {
+    loaded_ = false;
 }
 
 Shader::~Shader () {
-    glDeleteShader (handle_);
+    if (loaded_) {
+        glDeleteShader (handle_);
+    }
 }
 
 void Shader::Bind () {
@@ -52,13 +53,13 @@ void Shader::RegisterAttributes (const Attribute* attributes, const size_t lengt
     GLuint offset = 0;
     for (size_t i = 0; i < length; ++i) {
         const Attribute& attribute = attributes[i];
-        GLint location = glGetAttribLocation (handle_, attribute.name.c_str ());
+        GLint location = glGetAttribLocation (handle (), attribute.name ().c_str ());
         if (location > -1) {
-            glVertexAttribPointer (location, attribute.size, attribute.type, attribute.normalized, attribute.stride, BufferOffset (offset));
+            glVertexAttribPointer (location, attribute.size (), attribute.type (), attribute.normalized (), attribute.stride (), BufferOffset (offset));
             glEnableVertexAttribArray (location);            
-            offset += attribute.size * _GetGLTypeSize (attribute.type);
+            offset += attribute.size () * _GetGLTypeSize (attribute.type ());
         }else {
-            printf ("Warning: Attribute '%str' not found!\n", attribute.name.c_str ());
+            printf ("Warning: Attribute '%str' not found!\n", attribute.name ().c_str ());
         }
     }
 
@@ -67,8 +68,8 @@ void Shader::RegisterAttributes (const Attribute* attributes, const size_t lengt
 
     /* Disable attributes. */
     for (size_t i = 0; i < length; ++i) {
-        GLint location = attributes[i].location;
-        if (location > -1) glDisableVertexAttribArray (attributes[i].location);
+        GLint location = attributes[i].location ();
+        if (location > -1) glDisableVertexAttribArray (attributes[i].location ());
     }
 }
     
@@ -94,13 +95,13 @@ void Shader::SetUniformMatrix4f (const std::string& name, const GLsizei count, c
 }
 
 GLint Shader::GetUniform (const std::string& name) {
-    auto element = uniforms_->find (name);
-    if (element == uniforms_->end ()) {
+    auto element = uniforms_.find (name);
+    if (element == uniforms_.end ()) {
         GLint location = glGetUniformLocation (handle_, name.c_str ());
         if (location == -1) {
             printf ("Warning: Uniform '%str' not found!\n", name.c_str ()); 
         }
-        (*uniforms_)[name] = location;
+        uniforms_[name] = location;
         return location;
     }
     return element->second;    

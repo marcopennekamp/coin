@@ -2,7 +2,7 @@
 #define COIN_GL_FRAMEBUFFER_H_
 
 #include <coin/coin.h>
-#include <coin/gl/Texture.h>
+#include <coin/gl/Texture2D.h>
 
 
 namespace coin {
@@ -12,7 +12,7 @@ private:
     GLuint handle_;
     GLuint depth_buffer_handle_;
 
-    Texture texture_;
+    Texture2D texture_;
 
 public:
     Framebuffer (const Size width, const Size height);

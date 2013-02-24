@@ -1,8 +1,8 @@
 #include <png.h>
 #include <zlib/zlib.h>
 
-#include <coin/image/png.h>
-#include <coin/image/Image.h>
+#include <coin/resource/png.h>
+#include <coin/resource/Image.h>
 #include <coin/utils/Stream.h>
 
 
@@ -94,7 +94,6 @@ bool PngLoad (Stream& stream, Image& image) {
 
     /* Create fallback routine. */
     if (setjmp (png_jmpbuf (png))) {
-        image.Free ();
         png_destroy_read_struct (&png, &png_info, NULL);
         printf ("Error during PNG reading!\n");
         return false;

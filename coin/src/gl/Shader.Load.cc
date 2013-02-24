@@ -1,8 +1,4 @@
-#include <string.h>
-
-#include <coin/coin.h>
 #include <coin/gl/Shader.h>
-#include <coin/manager/ShaderManager.h>
 #include <coin/utils/Stream.h>
 
 using namespace std;
@@ -12,19 +8,18 @@ namespace coin {
 
 namespace {
 
-void printLog (GLuint shader) {
+void printLog (GLuint shader, const string& name) {
     int length;
     int log_length;
     glGetShaderiv (shader, GL_INFO_LOG_LENGTH, &log_length);
     GLchar* log = new GLchar [log_length];
     glGetShaderInfoLog (shader, log_length, &length, log);
-    const char* text = (const char*) log;
-    printf ("Could not load Shader!\n");
-    printf (text);
-    delete log;
+    printf ("Could not load Shader '%s':\n%s\n", name.c_str (), log);
+    fflush (stdout);
+    delete[] log;
 }
 
-char* ReadShaderSource (const char* path) {
+char* ReadShaderSource (const std::string& path) {
     FileStream stream (path, StreamMode::read);
 
     Size file_size = stream.Size ();
@@ -37,24 +32,9 @@ char* ReadShaderSource (const char* path) {
 
 }
 
-
-ShaderManager::ShaderManager (const std::string& load_path) : Manager (load_path) {
-
-}
-
-ShaderManager::~ShaderManager () {
-
-}
-
-Shader* ShaderManager::LoadElement (const std::string& path, const bool persistent) {
-    string local_path = load_path_ + "\\" + path;
-    string final_path = local_path;
-    final_path += ".vs";
-    char* vs_source = ReadShaderSource (final_path.c_str ());
-
-    final_path = local_path;
-    final_path += ".fs";
-    char* fs_source = ReadShaderSource (final_path.c_str ());
+bool Shader::Load (const std::string& path) {
+    char* vs_source = ReadShaderSource (path + ".vs");
+    char* fs_source = ReadShaderSource (path + ".fs");
 
     /* Compile Shader. */
     GLuint vs, fs;
@@ -71,40 +51,39 @@ Shader* ShaderManager::LoadElement (const std::string& path, const bool persiste
     glCompileShader (vs);
     glCompileShader (fs);
 
-    free (vs_source);
-    free (fs_source);
+    delete[] vs_source;
+    delete[] fs_source;
 
     /* Check whether compilation was successful. */
     GLint successful;
 
     glGetShaderiv (vs, GL_COMPILE_STATUS, &successful);
     if (successful == GL_FALSE) {
-        printLog (vs);
-        return NULL;
+        printLog (vs, path);
+        return false;
     }
 
     glGetShaderiv (fs, GL_COMPILE_STATUS, &successful);
     if (successful == GL_FALSE) {
-        printLog (fs);
-        return NULL;
+        printLog (fs, path);
+        return false;
     }
 
     /* Create program. */
-    GLuint id = glCreateProgram ();
-    Shader* shader = new Shader (id);
+    handle_ = glCreateProgram ();
+    
 
-    glAttachShader (id, vs);
-    glAttachShader (id, fs);
+    glAttachShader (handle_, vs);
+    glAttachShader (handle_, fs);
 
-    glLinkProgram (id);
+    glLinkProgram (handle_);
 
-    glGetProgramiv (id, GL_LINK_STATUS, &successful);
+    glGetProgramiv (handle_, GL_LINK_STATUS, &successful);
     if (successful == GL_FALSE) {
-        return NULL;
+        return false;
     }
 
-    RegisterElement (path, shader, persistent);
-    return shader;
+    return true;
 }
 
 }

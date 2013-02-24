@@ -152,7 +152,6 @@ void Start (Application* application, const Size window_width, const Size window
 
     SDL_ShowWindow (window_);
 
-
     /* Create OpenGL context */
     context_ = SDL_GL_CreateContext (window_);
     if (!context_) {
@@ -173,7 +172,7 @@ void Start (Application* application, const Size window_width, const Size window
     if (GLEW_OK != err) {
             printf ("Error: %s\n", glewGetErrorString (err));
     }
-    fprintf(stdout, "Status: Using GLEW %s\n", glewGetString (GLEW_VERSION));
+    printf ("Status: Using GLEW %s\n", glewGetString (GLEW_VERSION));
 
     SDL_DisplayMode mode;
     SDL_GetCurrentDisplayMode(0, &mode);
@@ -184,6 +183,7 @@ void Start (Application* application, const Size window_width, const Size window
     printf ("Renderer      : %s\n", glGetString (GL_RENDERER));
     printf ("Version       : %s\n", glGetString (GL_VERSION));
     printf ("\n");
+    fflush (stdout);
 
 
     /* Initialize application. */

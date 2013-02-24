@@ -128,7 +128,8 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FloatingPointModel>Fast</FloatingPointModel>
       <ObjectFileName>$(IntDir)/%(RelativeDir)/</ObjectFileName>
-      <TreatWarningAsError>true</TreatWarningAsError>
+      <TreatWarningAsError>false</TreatWarningAsError>
+      <AdditionalOptions>/wd4251 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -149,11 +150,13 @@
     <ClInclude Include="include\coin\gl\Framebuffer.h" />
     <ClInclude Include="include\coin\gl\Shader.h" />
     <ClInclude Include="include\coin\gl\Texture.h" />
-    <ClInclude Include="include\coin\image\Image.h" />
-    <ClInclude Include="include\coin\image\png.h" />
-    <ClInclude Include="include\coin\manager\Manager.h" />
-    <ClInclude Include="include\coin\manager\ShaderManager.h" />
-    <ClInclude Include="include\coin\manager\TextureManager.h" />
+    <ClInclude Include="include\coin\gl\Texture2D.h" />
+    <ClInclude Include="include\coin\gl\TextureArray.h" />
+    <ClInclude Include="include\coin\resource\Image.h" />
+    <ClInclude Include="include\coin\resource\png.h" />
+    <ClInclude Include="include\coin\resource\Element.h" />
+    <ClInclude Include="include\coin\resource\Manager.h" />
+    <ClInclude Include="include\coin\resource\TextureManager.h" />
     <ClInclude Include="include\coin\math\Matrix.h" />
     <ClInclude Include="include\coin\math\Vector.h" />
   </ItemGroup>
@@ -164,11 +167,13 @@
     <ClCompile Include="src\gl\BufferObject.cc" />
     <ClCompile Include="src\gl\Framebuffer.cc" />
     <ClCompile Include="src\gl\Shader.cc" />
+    <ClCompile Include="src\gl\Shader.Load.cc" />
     <ClCompile Include="src\gl\Texture.cc" />
-    <ClCompile Include="src\image\Image.cc" />
-    <ClCompile Include="src\image\png.cc" />
-    <ClCompile Include="src\manager\ShaderManager.cc" />
-    <ClCompile Include="src\manager\TextureManager.cc" />
+    <ClCompile Include="src\gl\Texture2D.cc" />
+    <ClCompile Include="src\gl\TextureArray.cc" />
+    <ClCompile Include="src\gl\TextureArray.Load.cc" />
+    <ClCompile Include="src\resource\Image.cc" />
+    <ClCompile Include="src\resource\png.cc" />
     <ClCompile Include="src\math\Matrix.cc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

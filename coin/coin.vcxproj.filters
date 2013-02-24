@@ -72,21 +72,6 @@
     <ClInclude Include="include\coin\gl\Texture.h">
       <Filter>Header Files\gl</Filter>
     </ClInclude>
-    <ClInclude Include="include\coin\manager\Manager.h">
-      <Filter>Header Files\manager</Filter>
-    </ClInclude>
-    <ClInclude Include="include\coin\manager\ShaderManager.h">
-      <Filter>Header Files\manager</Filter>
-    </ClInclude>
-    <ClInclude Include="include\coin\manager\TextureManager.h">
-      <Filter>Header Files\manager</Filter>
-    </ClInclude>
-    <ClInclude Include="include\coin\image\Image.h">
-      <Filter>Header Files\image</Filter>
-    </ClInclude>
-    <ClInclude Include="include\coin\image\png.h">
-      <Filter>Header Files\image</Filter>
-    </ClInclude>
     <ClInclude Include="include\coin\math\Matrix.h">
       <Filter>Header Files\math</Filter>
     </ClInclude>
@@ -98,6 +83,27 @@
     </ClInclude>
     <ClInclude Include="include\coin\gl\Framebuffer.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\coin\gl\Texture2D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\coin\resource\Element.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\coin\resource\Manager.h">
+      <Filter>Header Files\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="include\coin\resource\TextureManager.h">
+      <Filter>Header Files\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="include\coin\gl\TextureArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\coin\resource\Image.h">
+      <Filter>Header Files\image</Filter>
+    </ClInclude>
+    <ClInclude Include="include\coin\resource\png.h">
+      <Filter>Header Files\image</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -119,22 +125,28 @@
     <ClCompile Include="src\gl\Texture.cc">
       <Filter>Source Files\gl</Filter>
     </ClCompile>
-    <ClCompile Include="src\image\Image.cc">
-      <Filter>Source Files\image</Filter>
-    </ClCompile>
-    <ClCompile Include="src\image\png.cc">
-      <Filter>Source Files\image</Filter>
-    </ClCompile>
-    <ClCompile Include="src\manager\ShaderManager.cc">
-      <Filter>Source Files\manager</Filter>
-    </ClCompile>
-    <ClCompile Include="src\manager\TextureManager.cc">
-      <Filter>Source Files\manager</Filter>
-    </ClCompile>
     <ClCompile Include="src\math\Matrix.cc">
       <Filter>Source Files\math</Filter>
     </ClCompile>
     <ClCompile Include="src\gl\Framebuffer.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gl\Shader.Load.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gl\Texture2D.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gl\TextureArray.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\Image.cc">
+      <Filter>Source Files\image</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\png.cc">
+      <Filter>Source Files\image</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gl\TextureArray.Load.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

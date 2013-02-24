@@ -1,5 +1,5 @@
-#ifndef COIN_IMAGE_IMAGE_H_
-#define COIN_IMAGE_IMAGE_H_
+#ifndef COIN_RESOURCE_IMAGE_H_
+#define COIN_RESOURCE_IMAGE_H_
 
 #include <coin/coin.h>
 #include <coin/gl.h>
@@ -14,15 +14,14 @@ class COIN_DECL Image {
     u32* data_;
 
   public:
+    Image ();
+    Image (const Size width, const Size height);
+    ~Image ();
+
     /*
      * Allocates 'data_'.
      */
     void Create (const Size width, const Size height);
-
-    /*
-     * Frees 'data_'.
-     */
-    void Free ();
 
     inline const Size width () const { return width_; }
     inline const Size height () const { return height_; }
@@ -31,5 +30,5 @@ class COIN_DECL Image {
 
 }
 
-#endif  /* COIN_IMAGE_IMAGE_H_ */
+#endif  /* COIN_RESOURCE_IMAGE_H_ */
 
