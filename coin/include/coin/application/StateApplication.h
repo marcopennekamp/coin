@@ -21,8 +21,7 @@ class COIN_DECL StateApplication : public Application {
     State& GetState ();
     void ChangeState (State* state);
 
-    /* Application Hooks. */
-    virtual void Render (); /* Note: Update state changes only in main thread! */
+    void InitState (); /* Note: State changes only in main (i.e. render) thread! */
 };
 
 }

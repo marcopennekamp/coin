@@ -28,7 +28,7 @@ void StateApplication::ChangeState (State* state) {
     init_state_ = true;
 }
 
-void StateApplication::Render () {
+void StateApplication::InitState () {
     if (init_state_) {
         state_->Init ();
         if (state_->GrabMouse ()) {

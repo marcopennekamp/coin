@@ -26,6 +26,8 @@ public:
     Texture2D (const Image& image);
     Texture2D (const Image& image, Setup setup);
 
+    using Texture::Load;
+
     void BufferData (const void* data);
     bool Load (const std::string& path, Setup setup);
     void Bind (const GLuint location);
