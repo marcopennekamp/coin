@@ -10,7 +10,7 @@
 namespace coin {
 
 template <int v_size, typename T = float>
-class COIN_DECL Vector {
+class Vector {
     static_assert (v_size > 1, "Error: Vector size must be greater than 1!");
 
   private:
@@ -19,19 +19,22 @@ class COIN_DECL Vector {
     typedef Vector<v_size, T> BASE;
 
   public:
-    inline Vector (const bool clear = true) {
-        if (clear) {
-            for (int i = 0; i < v_size; i++) {
-                (*this)[i] = (T) 0;
-            }
+    Vector () {
+        for (int i = 0; i < v_size; i++) {
+            (*this)[i] = 0;
         }
     }
 
-    inline Vector (va_list arguments) {
-        for (int i = 0; i < v_size; i++) {
+    Vector (T a, ...) {
+        va_list arguments;   
+        va_start (arguments, a);
+        (*this)[0] = a;
+        for (int i = 1; i < v_size; i++) {
             (*this)[i] = va_arg (arguments, T);
         }
+        va_end (arguments);
     }
+
 
     inline T& operator[] (const int i) {
         return data[i];
@@ -41,20 +44,42 @@ class COIN_DECL Vector {
         return data[i];
     }
 
+
     inline T& x () {
         return (*this)[0];
     }
 
+    inline const T x () const {
+        return (*this)[0];
+    }
+
+
     inline T& y () {
         return (*this)[1];
     }
+
+    inline const T y () const {
+        return (*this)[1];
+    }
+
 
     inline T& z () {
         static_assert (v_size > 2, "Error: To use z (), the vector size must be at least 3!");
         return (*this)[2];
     }
 
+    inline const T z () const {
+        static_assert (v_size > 2, "Error: To use z (), the vector size must be at least 3!");
+        return (*this)[2];
+    }
+
+
     inline T& w () {
+        static_assert (v_size > 3, "Error: To use w (), the vector size must be at least 4!");
+        return (*this)[3];
+    }
+
+    inline const T w () const {
         static_assert (v_size > 3, "Error: To use w (), the vector size must be at least 4!");
         return (*this)[3];
     }
@@ -72,7 +97,7 @@ class COIN_DECL Vector {
     /* Normal vector. */
     inline BASE normal () const {
         T len = length ();
-        BASE out (false);
+        BASE out;
         if (len > 0) {
             out = (*this) * (((T) 1) / len);
         }
@@ -89,7 +114,7 @@ class COIN_DECL Vector {
 
     /* Add. */
     inline friend BASE operator+ (const BASE& lhs, const BASE& rhs) {
-        BASE out (false);
+        BASE out;
         for (int i = 0; i < v_size; i++) {
             out[i] = lhs[i] + rhs[i];
         }
@@ -98,7 +123,7 @@ class COIN_DECL Vector {
 
     /* Subtract. */
     inline friend BASE operator- (const BASE& lhs, const BASE& rhs) {
-        BASE out (false);
+        BASE out;
         for (int i = 0; i < v_size; i++) {
             out[i] = lhs[i] - rhs[i];
         }
@@ -108,11 +133,19 @@ class COIN_DECL Vector {
     /* Multiply with scalar. */
     template <typename ST>
     inline friend BASE operator* (const BASE& lhs, const ST scalar) {
-        BASE out (false);
+        BASE out;
         for (int i = 0; i < v_size; i++) {
             out[i] = lhs[i] * scalar;
         }
         return out;
+    }
+
+
+    inline friend bool operator== (const BASE& lhs, const BASE& rhs) {
+        for (size_t i = 0; i < v_size; ++i) {
+            if (lhs[i] != rhs[i]) return false;
+        }
+        return true;
     }
     
 };

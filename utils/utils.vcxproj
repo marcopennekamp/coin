@@ -133,7 +133,7 @@
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>COIN_UTILS_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>COIN_UTILS_EXPORT_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -149,9 +149,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\coin\utils\Array.h" />
-    <ClInclude Include="include\coin\utils\directory.h" />
+    <ClInclude Include="include\coin\utils\Directory.h" />
+    <ClInclude Include="include\coin\utils\List.h" />
+    <ClInclude Include="include\coin\utils\Pool.h" />
     <ClInclude Include="include\coin\utils\Stream.h" />
-    <ClInclude Include="include\coin\utils\time.h" />
+    <ClInclude Include="include\coin\utils\Time.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\utils\BufferStream.cc" />

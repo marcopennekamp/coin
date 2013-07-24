@@ -6,16 +6,15 @@ using namespace std;
 
 
 namespace coin {
-namespace Directory {
 
-bool IsDirectory (const std::string& directory_name) {
+bool DirectoryIsDirectory (const std::string& directory_name) {
     WIN32_FILE_ATTRIBUTE_DATA data;
     BOOL success = GetFileAttributesEx (directory_name.c_str (), GetFileExInfoStandard, &data);
     return success && (data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) > 0;
 }
 
 
-void MakeDirectories (const std::string& path, bool last_name_is_directory) {
+void DirectoryMakeDirectories (const std::string& path, bool last_name_is_directory) {
     string tmp = path;
     string existing_path = "";
 
@@ -43,7 +42,7 @@ void MakeDirectories (const std::string& path, bool last_name_is_directory) {
     while ((pos = tmp.find_first_of ('\\', last_pos)) != string::npos) {
         existing_path += tmp.substr (last_pos, pos + 1);
 
-        if (!IsDirectory (existing_path.c_str ())) {
+        if (!DirectoryIsDirectory (existing_path.c_str ())) {
             CreateDirectory (existing_path.c_str (), NULL);
         }
         last_pos = pos + 1;
@@ -52,5 +51,4 @@ void MakeDirectories (const std::string& path, bool last_name_is_directory) {
 
 }
 
-}
 }

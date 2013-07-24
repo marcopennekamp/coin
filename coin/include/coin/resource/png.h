@@ -9,8 +9,8 @@
 
 namespace coin {
 
-COIN_DECL bool PngLoad (Stream& stream, Image& image);
-COIN_DECL bool PngSave (Stream& stream, Image& image, const bool flipped = false); // TODO(Marco): Comment/ Flip vertical or horizontal?
+COIN_EXPORT bool PngLoad (Stream& stream, Image& image);
+COIN_EXPORT bool PngSave (Stream& stream, Image& image, const bool flipped = false); // TODO(Marco): Comment/ Flip vertical or horizontal?
 
 }
 

@@ -7,7 +7,7 @@
 
 namespace coin {
 
-class COIN_DECL Framebuffer {
+class COIN_EXPORT Framebuffer {
 private:
     GLuint handle_;
     GLuint depth_buffer_handle_;

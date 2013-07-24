@@ -7,7 +7,7 @@
 
 namespace coin {
 
-class COIN_DECL TextureArray : public Texture {
+class COIN_EXPORT TextureArray : public Texture {
 private:
     GLuint width_;
     GLuint height_;

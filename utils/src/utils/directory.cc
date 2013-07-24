@@ -1,15 +1,14 @@
 #include <dirent.h>
 
-#include <coin/utils/directory.h>
-#include <coin/utils/time.h>
+#include <coin/utils/Directory.h>
+#include <coin/utils/Time.h>
 
 using namespace std;
 
 
 namespace coin {
-namespace Directory {
 
-void Crawl (const std::string& directory_name, std::function<void(std::string&)>& file_callback, std::function<bool(std::string&)>& should_crawl_directory) {
+void DirectoryCrawl (const std::string& directory_name, std::function<void(const std::string&)>& file_callback, std::function<bool(const std::string&)>& should_crawl_directory) {
     DIR* dir = opendir (directory_name.c_str ());
 
     /* Load all block textures from directory. */
@@ -24,10 +23,10 @@ void Crawl (const std::string& directory_name, std::function<void(std::string&)>
             }
 
             string new_path = directory_name + "\\" + name;
-            bool is_directory = IsDirectory (new_path.c_str ());
+            bool is_directory = DirectoryIsDirectory (new_path);
             if (is_directory) {
                 if (should_crawl_directory (new_path)) {
-                    Crawl (new_path, file_callback, should_crawl_directory);
+                    DirectoryCrawl (new_path, file_callback, should_crawl_directory);
                 }
             }else {
                 file_callback (new_path);
@@ -41,5 +40,4 @@ void Crawl (const std::string& directory_name, std::function<void(std::string&)>
 
 }
 
-}
 }

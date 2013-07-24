@@ -9,7 +9,7 @@ namespace coin {
 /* TODO(Marco): template matrix implementation. */
 
 
-class COIN_DECL Matrix4 {
+class COIN_EXPORT Matrix4 {
   private:
     float data_ [16];
 

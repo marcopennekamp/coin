@@ -6,7 +6,7 @@
 
 namespace coin {
 
-class COIN_DECL ScreenConfig {
+class COIN_EXPORT ScreenConfig {
   private:
     Size width_;
     Size height_;

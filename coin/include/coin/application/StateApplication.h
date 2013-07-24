@@ -9,7 +9,7 @@ namespace coin {
 
 class State;
 
-class COIN_DECL StateApplication : public Application {
+class COIN_EXPORT StateApplication : public Application {
   private:
     State* state_;
     bool init_state_;

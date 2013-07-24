@@ -7,7 +7,7 @@
 
 namespace coin {
 
-class COIN_DECL BufferObject {
+class COIN_EXPORT BufferObject {
   private:
     GLuint handle_;
     GLenum type_;

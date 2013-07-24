@@ -9,7 +9,7 @@ namespace coin {
 
 class State;
 
-class COIN_DECL Application : public CommonStateInterface {
+class COIN_EXPORT Application : public CommonStateInterface {
   public:
     Application () { }
     virtual ~Application () { }

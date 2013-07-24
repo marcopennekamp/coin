@@ -21,7 +21,7 @@ enum T {
 }
 
 
-class COIN_UTILS_DECL Stream {
+class COIN_UTILS_EXPORT Stream {
   protected:
     const StreamMode::T mode_;
 
@@ -55,7 +55,7 @@ class COIN_UTILS_DECL Stream {
 };
 
 
-class COIN_UTILS_DECL FileStream : public Stream {
+class COIN_UTILS_EXPORT FileStream : public Stream {
 private:
     FILE* stream_;
 
@@ -74,7 +74,7 @@ public:
 };
 
 
-class COIN_UTILS_DECL BufferStream : public Stream {
+class COIN_UTILS_EXPORT BufferStream : public Stream {
   private:
     u8* buffer_;
     coin::Position position_;

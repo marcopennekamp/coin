@@ -1,16 +1,16 @@
 #ifndef COIN_H_
 #define COIN_H_
 
-#ifdef COIN_EXPORT
-#define COIN_DECL __declspec (dllexport)
+#ifdef COIN_EXPORT_DLL
+#define COIN_EXPORT __declspec (dllexport)
 #else
-#define COIN_DECL __declspec (dllimport)
+#define COIN_EXPORT __declspec (dllimport)
 #endif
 
-#ifdef COIN_UTILS_EXPORT
-#define COIN_UTILS_DECL __declspec (dllexport)
+#ifdef COIN_UTILS_EXPORT_DLL
+#define COIN_UTILS_EXPORT __declspec (dllexport)
 #else
-#define COIN_UTILS_DECL __declspec (dllimport)
+#define COIN_UTILS_EXPORT __declspec (dllimport)
 #endif
 
 
@@ -36,8 +36,8 @@ typedef s32                     RelativePosition;
 typedef s32                     Key;
 typedef s32                     MouseButton;
 
-COIN_DECL void Start (Application* application, const Size window_width, const Size window_height, const bool fullscreen, const bool vsync);
-COIN_DECL void Stop ();
+COIN_EXPORT void Start (Application* application, const Size window_width, const Size window_height, const bool fullscreen, const bool vsync);
+COIN_EXPORT void Stop ();
 
 }
 

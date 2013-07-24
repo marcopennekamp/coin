@@ -11,7 +11,7 @@
 
 namespace coin {
 
-class COIN_DECL Texture : public Element {
+class COIN_EXPORT Texture : public Element {
 public:
     typedef void (*Setup) (Texture*);
 

@@ -7,7 +7,7 @@
 
 namespace coin {
 
-class COIN_DECL Image {
+class COIN_EXPORT Image {
   private:
     Size width_;
     Size height_;

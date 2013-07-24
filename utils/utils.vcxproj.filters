@@ -15,16 +15,22 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\coin\utils\directory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\coin\utils\Stream.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\coin\utils\time.h">
+    <ClInclude Include="include\coin\utils\Array.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\coin\utils\Array.h">
+    <ClInclude Include="include\coin\utils\Pool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\coin\utils\List.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\coin\utils\Directory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\coin\utils\Time.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

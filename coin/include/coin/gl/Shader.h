@@ -11,7 +11,7 @@
 
 namespace coin {
 
-class COIN_DECL Shader : public Element {
+class COIN_EXPORT Shader : public Element {
 public:
     class Attribute {
     private:

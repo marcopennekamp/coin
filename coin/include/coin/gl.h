@@ -17,6 +17,8 @@
 
 #include <SDL2/SDL.h>
 
+#include <coin/coin.h>
+
 
 inline char* BufferOffset (const GLuint offset) {
     return (char*) NULL + offset;
@@ -24,7 +26,7 @@ inline char* BufferOffset (const GLuint offset) {
 
 namespace coin {
 
-SDL_Window* GetWindow ();
+COIN_EXPORT SDL_Window* GetWindow ();
 
 }
 
