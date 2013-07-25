@@ -20,7 +20,6 @@ using namespace std;
 
 namespace coin {
 
-
 namespace {
 
 Application*    application_;

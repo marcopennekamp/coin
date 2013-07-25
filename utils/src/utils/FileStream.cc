@@ -1,17 +1,15 @@
-// #define _CRT_SECURE_NO_DEPRECATE
-
-#include <coin/utils/Stream.h>
+#include <coin/utils/FileStream.h>
 
 
 namespace coin {
 
-FileStream::FileStream (const std::string& path, const StreamMode::T mode) : Stream (mode) {
+FileStream::FileStream (const std::string& path, const Mode mode) : Stream (mode) {
     const char* fopen_mode;
-    if (mode_ == StreamMode::read) {
+    if (mode_ == Stream::Mode::read) {
         fopen_mode = "rb";
-    }else if (mode_ == StreamMode::write) {
+    }else if (mode_ == Stream::Mode::write) {
         fopen_mode = "wb";
-    }else { /* FLEE_STREAM_APPEND */
+    }else { /* Stream::Mode::append */
         fopen_mode = "ab";
     }
 
@@ -28,8 +26,8 @@ FileStream::~FileStream () {
 }
 
 
-const Size FileStream::Size () {
-    if (mode_ != StreamMode::read) {
+const size_t FileStream::Size () {
+    if (mode_ != Stream::Mode::read) {
         printf ("Can not get the size of a file not opened for reading.");
         return 0;
     }
@@ -42,13 +40,13 @@ const Size FileStream::Size () {
 }
 
 
-const u32 FileStream::Position () {
-    return ftell (stream_);
+const size_t FileStream::Position () {
+    return (size_t) ftell (stream_);
 }
 
 
-void FileStream::SetPosition (const coin::Position position) {
-    fseek (stream_, position, 0);
+void FileStream::SetPosition (const size_t position) {
+    fseek (stream_, (long) position, 0);
 }
 
 
@@ -57,13 +55,13 @@ void FileStream::Flush () {
 }
 
 
-void FileStream::Read (u8* buffer, const coin::Size buffer_size) {
-    fread (buffer, sizeof (u8), buffer_size, stream_);
+void FileStream::Read (uint8_t* buffer, const size_t buffer_size) {
+    fread (buffer, sizeof (uint8_t), buffer_size, stream_);
 }
 
 
-void FileStream::Write (const u8* buffer, const coin::Size buffer_size) {
-    fwrite (buffer, sizeof (u8), buffer_size, stream_);
+void FileStream::Write (const uint8_t* buffer, const size_t buffer_size) {
+    fwrite (buffer, sizeof (uint8_t), buffer_size, stream_);
 }
 
 }

@@ -1,4 +1,4 @@
-#include <coin/utils/Stream.h>
+#include <coin/utils/FileStream.h>
 #include <coin/gl/Texture2D.h>
 #include <coin/resource/png.h>
 
@@ -55,7 +55,7 @@ void Texture2D::BufferData (const void* data) {
 }
 
 bool Texture2D::Load (const std::string& path, Setup setup) {
-    FileStream stream (path, StreamMode::read);
+    FileStream stream (path, Stream::Mode::read);
     Image image;
     bool success = PngLoad (stream, image);
 

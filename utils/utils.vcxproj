@@ -148,20 +148,28 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="include\coin\utils\Array.h" />
+    <ClInclude Include="deprecated\Array.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="include\coin\utils\BufferStream.h" />
     <ClInclude Include="include\coin\utils\Directory.h" />
-    <ClInclude Include="include\coin\utils\List.h" />
-    <ClInclude Include="include\coin\utils\Pool.h" />
+    <ClInclude Include="include\coin\utils\FileStream.h" />
+    <ClInclude Include="deprecated\List.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="deprecated\Pool.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="include\coin\utils\Stream.h" />
     <ClInclude Include="include\coin\utils\Time.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\utils\BufferStream.cc" />
-    <ClCompile Include="src\utils\directory.cc" />
+    <ClCompile Include="src\utils\Directory.cc" />
     <ClCompile Include="src\utils\FileStream.cc" />
     <ClCompile Include="src\utils\Stream.cc" />
-    <ClCompile Include="src\utils\windows\directory.cc" />
-    <ClCompile Include="src\utils\windows\time.cc" />
+    <ClCompile Include="src\utils\windows\Directory.cc" />
+    <ClCompile Include="src\utils\windows\Time.cc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

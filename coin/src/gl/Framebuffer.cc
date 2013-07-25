@@ -48,7 +48,6 @@ Framebuffer::~Framebuffer () {
 
 void Framebuffer::Bind () {
     glBindFramebuffer (GL_FRAMEBUFFER, handle_);
-    // TODO(Marco): Use glViewport ?
 }
 
 void Framebuffer::Unbind () {

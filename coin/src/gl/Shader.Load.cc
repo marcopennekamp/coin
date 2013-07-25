@@ -1,5 +1,5 @@
 #include <coin/gl/Shader.h>
-#include <coin/utils/Stream.h>
+#include <coin/utils/FileStream.h>
 
 using namespace std;
 
@@ -20,11 +20,11 @@ void printLog (GLuint shader, const string& name) {
 }
 
 char* ReadShaderSource (const std::string& path) {
-    FileStream stream (path, StreamMode::read);
+    FileStream stream (path, Stream::Mode::read);
 
-    Size file_size = stream.Size ();
+    size_t file_size = stream.Size ();
     char* source = new char [file_size + 1];
-    stream.Read ((u8*) source, file_size);
+    stream.Read ((uint8_t*) source, file_size);
     source[file_size] = '\0';
 
     return source;

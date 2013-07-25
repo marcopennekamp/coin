@@ -3,6 +3,7 @@
 
 #include <coin/coin.h>
 #include <coin/application/CommonStateInterface.h>
+#include <coin/application/ScreenConfig.h>
 
 
 namespace coin {
@@ -10,14 +11,19 @@ namespace coin {
 class State;
 
 class COIN_EXPORT Application : public CommonStateInterface {
-  public:
+private:
+    ScreenConfig screen_config_;
+
+public:
     Application () { }
     virtual ~Application () { }
 
     virtual State& GetState () = 0;
     virtual void InitGl () { }
-    virtual void Resize (const Size width, const Size height) { }
+    virtual void Resize (const Size width, const Size height);
     virtual void Destroy () { }
+
+    inline const ScreenConfig& screen_config () { return screen_config_; }
 };
 
 }

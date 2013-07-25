@@ -6,12 +6,13 @@
 
 namespace coin {
 
-typedef u64     Time;
+typedef uint64_t  Time;
 
 COIN_UTILS_EXPORT void TimeInit ();
 COIN_UTILS_EXPORT Time TimeNanoseconds ();
 
 }
+
 
 #endif  /* COIN_UTILS_TIME_H_ */
 

@@ -22,7 +22,7 @@ State& StateApplication::GetState () {
 
 void StateApplication::ChangeState (State* state) {
     if (state_ != NULL) {
-        delete state_; // Destructor finalizes State
+        delete state_; /* Destructor finalizes State. */
     }
     state_ = state;
     init_state_ = true;

@@ -18,29 +18,29 @@
     <ClInclude Include="include\coin\utils\Stream.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\coin\utils\Array.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\coin\utils\Pool.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\coin\utils\List.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\coin\utils\Directory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\coin\utils\Time.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="deprecated\Array.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\coin\utils\FileStream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\coin\utils\BufferStream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="deprecated\List.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="deprecated\Pool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\utils\directory.cc">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\utils\windows\time.cc">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\utils\FileStream.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -50,7 +50,13 @@
     <ClCompile Include="src\utils\Stream.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\utils\windows\directory.cc">
+    <ClCompile Include="src\utils\Directory.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\windows\Directory.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\windows\Time.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

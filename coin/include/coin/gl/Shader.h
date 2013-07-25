@@ -3,6 +3,7 @@
 
 #include <map>
 #include <string>
+#include <vector>
 
 #include <coin/coin.h>
 #include <coin/gl.h>
@@ -67,7 +68,7 @@ public:
     void Bind ();
 
     /* Bind the VAO before. This call unbinds the VAO. */
-    void RegisterAttributes (const Attribute* attributes, const size_t length);
+    void Shader::RegisterAttributes (const std::vector<Attribute>& attributes);
     
     void SetUniformi (const std::string& name, const GLint a);
     void SetUniformu (const std::string& name, const GLuint a);

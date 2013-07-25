@@ -39,14 +39,14 @@ void pngCallbackFlush (png_structp png) {
 
 bool PngLoad (Stream& stream, Image& image) {
     /* Check if stream is READ stream. */
-    if (stream.mode () != StreamMode::read) {
+    if (stream.mode () != Stream::Mode::read) {
         printf ("Supplied stream is not a read stream.\n");
         return false;
     }
 
     /* Check if stream is valid PNG. */
     {
-        u8 header [8];
+        uint8_t header [8];
         stream.Read (header, 8);
         if (png_sig_cmp (header, 0, 8)) { /* NOT PNG. */
             printf ("Supplied stream does not represent a PNG image.\n");
@@ -101,10 +101,10 @@ bool PngLoad (Stream& stream, Image& image) {
 
     /* Read the actual image. */
     png_bytep target = (png_bytep) image.data ();
-    u32 target_offset = 0;
-    for (u32 i = 0; i < image.height (); ++i) {
+    uint32_t target_offset = 0;
+    for (uint32_t i = 0; i < image.height (); ++i) {
         png_read_row (png, (png_bytep) (target + target_offset), NULL);
-        target_offset += (u32) png_get_rowbytes (png, png_info);
+        target_offset += (uint32_t) png_get_rowbytes (png, png_info);
     }
 
     /* Cleanup. */
@@ -117,7 +117,7 @@ bool PngLoad (Stream& stream, Image& image) {
 
 bool PngSave (Stream& stream, Image& image, const bool flipped) {
      /* Check if stream is WRITE stream. */
-    if (stream.mode () != StreamMode::write) {
+    if (stream.mode () != Stream::Mode::write) {
         printf ("Supplied stream is not a write stream.\n");
         return false;
     }
@@ -155,16 +155,16 @@ bool PngSave (Stream& stream, Image& image, const bool flipped) {
 
     /* Write image. */
     png_bytep target = (png_bytep) image.data ();
-    s32 target_offset = 0;
-    s32 direction = 1;
+    int32_t target_offset = 0;
+    int32_t direction = 1;
     if (flipped) {
-        target_offset = image.width () * (image.height () - 1) * sizeof (u32);
+        target_offset = image.width () * (image.height () - 1) * sizeof (uint32_t);
         direction = -1;
     }
 
-    for (u32 i = 0; i < image.height (); ++i) {
+    for (uint32_t i = 0; i < image.height (); ++i) {
         png_write_row (png, (png_bytep) (target + target_offset));
-        target_offset += ((s32) image.width () * sizeof (u32)) * direction;
+        target_offset += ((int32_t) image.width () * sizeof (uint32_t)) * direction;
     }
 
     /* Cleanup. */

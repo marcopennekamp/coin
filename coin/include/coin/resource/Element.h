@@ -8,7 +8,7 @@ namespace coin {
 
 class Element {
 public:
-    /* returns whether loading the element was successful. */
+    /* Returns whether loading the element was successful. */
     virtual bool Load (const std::string& path) = 0;
 };
 

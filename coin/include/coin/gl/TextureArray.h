@@ -1,7 +1,8 @@
 #ifndef COIN_GL_TEXTUREARRAY_H_
 #define COIN_GL_TEXTUREARRAY_H_
 
-#include <coin/utils/Array.h>
+#include <vector>
+
 #include <coin/gl/Texture.h>
 
 
@@ -13,7 +14,7 @@ private:
     GLuint height_;
     GLuint depth_;
 
-    bool Init (const Array<Image>& images, Setup setup);
+    bool Init (const std::vector<Image>& images, Setup setup);
     void Init (const GLuint width, const GLuint height, const GLuint depth, Setup setup);
     void Init (const GLuint width, const GLuint height, const GLuint depth, Setup setup, const void* data);
 
@@ -25,8 +26,8 @@ public:
     TextureArray (const GLuint width, const GLuint height, const GLuint depth);
     TextureArray (const GLuint width, const GLuint height, const GLuint depth, Setup setup);
 
-    TextureArray (const Array<Image>& images);
-    TextureArray (const Array<Image>& images, Setup setup);
+    TextureArray (const std::vector<Image>& images);
+    TextureArray (const std::vector<Image>& images, Setup setup);
 
     using Texture::Load;
 

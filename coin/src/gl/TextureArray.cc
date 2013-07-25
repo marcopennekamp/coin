@@ -3,7 +3,7 @@
 
 namespace coin {
 
-bool TextureArray::Init (const Array<Image>& images, Setup setup) {
+bool TextureArray::Init (const std::vector<Image>& images, Setup setup) {
     // TODO(Marco): Throw exception.
     /* Check whether depth is greater than one. */
     const Size depth = (Size) images.size ();
@@ -15,10 +15,10 @@ bool TextureArray::Init (const Array<Image>& images, Setup setup) {
     /* Copy image data into an array. */
     const Size width = images[0].width ();
     const Size height = images[0].height ();
-    const Size size = width * height * sizeof (u32);
-    u32* data = new u32[width * height * depth];
+    const Size size = width * height * sizeof (uint32_t);
+    uint32_t* data = new uint32_t[width * height * depth];
     for (Size i = 0; i < depth; ++i) {
-        Image& image = images[0];
+        const Image& image = images[0];
         if (width != image.width () || height != image.height ()) {
             printf ("Error: All images in the array have to be of the same size!\n");
             delete[] data;
@@ -64,11 +64,11 @@ TextureArray::TextureArray (const GLuint width, const GLuint height, const GLuin
     Init (width, height, depth, setup);
 }
 
-TextureArray::TextureArray (const Array<Image>& images) {
+TextureArray::TextureArray (const std::vector<Image>& images) {
     Init (images, NULL);
 }
 
-TextureArray::TextureArray (const Array<Image>& images, Setup setup) {
+TextureArray::TextureArray (const std::vector<Image>& images, Setup setup) {
     Init (images, setup);
 }
 

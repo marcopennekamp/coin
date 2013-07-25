@@ -20,7 +20,7 @@ Image::~Image () {
 void Image::Create (const Size width, const Size height) {
     width_ = width;
     height_ = height;
-    data_ = new u32 [width * height];
+    data_ = new uint32_t [width * height];
 }
 
 }

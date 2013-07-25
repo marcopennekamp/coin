@@ -157,10 +157,15 @@
     <ClInclude Include="include\coin\resource\Element.h" />
     <ClInclude Include="include\coin\resource\Manager.h" />
     <ClInclude Include="include\coin\resource\TextureManager.h" />
-    <ClInclude Include="include\coin\math\Matrix.h" />
-    <ClInclude Include="include\coin\math\Vector.h" />
+    <ClInclude Include="deprecated\Matrix.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="deprecated\Vector.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\application\Application.cc" />
     <ClCompile Include="src\application\ScreenConfig.cc" />
     <ClCompile Include="src\application\StateApplication.cc" />
     <ClCompile Include="src\coin.cc" />
@@ -174,7 +179,9 @@
     <ClCompile Include="src\gl\TextureArray.Load.cc" />
     <ClCompile Include="src\resource\Image.cc" />
     <ClCompile Include="src\resource\png.cc" />
-    <ClCompile Include="src\math\Matrix.cc" />
+    <ClCompile Include="deprecated\Matrix.cc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

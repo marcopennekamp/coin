@@ -1,8 +1,6 @@
 #ifndef COIN_UTILS_STREAM_H_
 #define COIN_UTILS_STREAM_H_
 
-#include <stdio.h>
-
 #include <string>
 
 #include <coin/coin.h>
@@ -10,91 +8,48 @@
 
 namespace coin {
 
-namespace StreamMode {
-
-enum T {
-    read = 0x00,
-    write,
-    append
-};
-
-}
-
-
 class COIN_UTILS_EXPORT Stream {
-  protected:
-    const StreamMode::T mode_;
+public:
+    enum class Mode {
+        read,
+        write,
+        append
+    };
 
-  public:
-    Stream (const StreamMode::T mode) : mode_ (mode) { }
+protected:
+    const Mode mode_;
+
+public:
+    Stream (const Mode mode) : mode_ (mode) { }
     virtual ~Stream () { }
 
-    virtual const coin::Size Size () { return 0; }
-    virtual const coin::Position Position () { return 0; }
+    virtual const size_t Size () { return 0; }
+    virtual const size_t Position () { return 0; }
 
-    virtual void SetPosition (const coin::Position position) { }
+    virtual void SetPosition (const size_t position) { }
 
-    virtual void Read (u8* buffer, const coin::Size buffer_size) { }
-    virtual void Write (const u8* buffer, const coin::Size buffer_size) { }
+    virtual void Read (uint8_t* buffer, const size_t buffer_size) { }
+    virtual void Write (const uint8_t* buffer, const size_t buffer_size) { }
     virtual void Flush () { }
 
     /* Endianness independent IO. */
-    void ReadU8 (u8& out);
-    void ReadU16 (u16& out);
-    void ReadU32 (u32& out);
-    void ReadU64 (u64& out);
+    void ReadU8 (uint8_t& out);
+    void ReadU16 (uint16_t& out);
+    void ReadU32 (uint32_t& out);
+    void ReadU64 (uint64_t& out);
     void ReadString (std::string& out);
 
-    void WriteU8 (const u8 in);
-    void WriteU16 (const u16 in);
-    void WriteU32 (const u32 in);
-    void WriteU64 (const u64 in);
+    void WriteU8 (const uint8_t in);
+    void WriteU16 (const uint16_t in);
+    void WriteU32 (const uint32_t in);
+    void WriteU64 (const uint64_t in);
     void WriteString (const std::string& in);
 
-    inline StreamMode::T mode () { return mode_; }
-};
-
-
-class COIN_UTILS_EXPORT FileStream : public Stream {
-private:
-    FILE* stream_;
-
-public:
-    FileStream (const std::string& path, const StreamMode::T mode);
-    ~FileStream ();
-
-    const coin::Size Size ();
-    const coin::Position Position ();
-
-    void SetPosition (const coin::Position position);
-
-    void Read (u8* buffer, const coin::Size buffer_size);
-    void Write (const u8* buffer, const coin::Size buffer_size);
-    void Flush ();
-};
-
-
-class COIN_UTILS_EXPORT BufferStream : public Stream {
-  private:
-    u8* buffer_;
-    coin::Position position_;
-    coin::Size buffer_size_;
-
-  public:
-    BufferStream (u8* buffer, const coin::Size buffer_size, const StreamMode::T mode);
-    ~BufferStream ();
-
-    const coin::Size Size ();
-    const coin::Position Position ();
-
-    void SetPosition (const coin::Position position);
-
-    void Read (u8* buffer, const coin::Size buffer_size);
-    void Write (const u8* buffer, const coin::Size buffer_size);
-    void Flush ();
+    inline Mode mode () { return mode_; }
 };
 
 }
+
 
 #endif  /* COIN_UTILS_STREAM_H_ */
 

@@ -11,7 +11,7 @@ class COIN_EXPORT Image {
   private:
     Size width_;
     Size height_;
-    u32* data_;
+    uint32_t* data_;
 
   public:
     Image ();
@@ -25,7 +25,7 @@ class COIN_EXPORT Image {
 
     inline const Size width () const { return width_; }
     inline const Size height () const { return height_; }
-    inline u32* data () const { return data_; }
+    inline uint32_t* data () const { return data_; }
 };
 
 }

@@ -1,12 +1,16 @@
 #include <coin/coin.h>
 #include <coin/gl/Shader.h>
 
+#include <vector>
+
+using namespace std;
+
 
 namespace coin {
 
 namespace {
 
-GLuint _GetGLTypeSize (GLenum type) {
+GLuint getGLTypeSize (GLenum type) {
     switch (type) {
     case GL_BYTE: 
     case GL_UNSIGNED_BYTE:
@@ -48,16 +52,16 @@ void Shader::Bind () {
     glUseProgram (handle_);
 }
 
-void Shader::RegisterAttributes (const Attribute* attributes, const size_t length) {
+void Shader::RegisterAttributes (const vector<Attribute>& attributes) {
     /* Find and enable attributes.*/
     GLuint offset = 0;
-    for (size_t i = 0; i < length; ++i) {
+    for (size_t i = 0; i < attributes.size (); ++i) {
         const Attribute& attribute = attributes[i];
         GLint location = glGetAttribLocation (handle (), attribute.name ().c_str ());
         if (location > -1) {
             glVertexAttribPointer (location, attribute.size (), attribute.type (), attribute.normalized (), attribute.stride (), BufferOffset (offset));
             glEnableVertexAttribArray (location);            
-            offset += attribute.size () * _GetGLTypeSize (attribute.type ());
+            offset += attribute.size () * getGLTypeSize (attribute.type ());
         }else {
             printf ("Warning: Attribute '%str' not found!\n", attribute.name ().c_str ());
         }
@@ -67,7 +71,7 @@ void Shader::RegisterAttributes (const Attribute* attributes, const size_t lengt
     glBindVertexArray (0);
 
     /* Disable attributes. */
-    for (size_t i = 0; i < length; ++i) {
+    for (size_t i = 0; i < attributes.size (); ++i) {
         GLint location = attributes[i].location ();
         if (location > -1) glDisableVertexAttribArray (attributes[i].location ());
     }

@@ -1,20 +1,20 @@
-#include <vector>
-
-#include <coin/utils/Stream.h>
+#include <coin/utils/FileStream.h>
 #include <coin/gl/TextureArray.h>
 #include <coin/resource/png.h>
+
+using namespace std;
 
 
 namespace coin {
 
 namespace {
 
-void ReadTAFile (const std::string& path, std::vector<std::string>& files) {
-    FileStream stream (path, StreamMode::read);
+void readTextureArrayFile (const std::string& path, vector<std::string>& files) {
+    FileStream stream (path, Stream::Mode::read);
 
-    const Size file_size = stream.Size ();
+    const size_t file_size = stream.Size ();
     char* source = new char [file_size];
-    stream.Read ((u8*) source, file_size);
+    stream.Read ((uint8_t*) source, file_size);
 
     const std::string text (source, file_size);
     const std::string base_path = path.substr (0, path.find_last_of ('/') + 1); /* Preserves the '/'. */
@@ -37,13 +37,12 @@ void ReadTAFile (const std::string& path, std::vector<std::string>& files) {
 
 bool TextureArray::Load (const std::string& path, Setup setup) {
     std::vector<std::string> files;
-    ReadTAFile (path, files);
+    readTextureArrayFile (path, files);
 
     /* Load all images. */
-    Array<Image> images;
-    images.Create (files.size ());
+    vector<Image> images (files.size ());
     for (size_t i = 0; i < files.size (); ++i) {
-        FileStream stream (files[i], StreamMode::read);
+        FileStream stream (files[i], Stream::Mode::read);
         bool success = PngLoad (stream, images[i]);
 
         /* Texture loading failed. */

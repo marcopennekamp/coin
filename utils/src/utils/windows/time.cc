@@ -29,7 +29,7 @@ void TimeInit () {
 Time TimeNanoseconds () {
     LARGE_INTEGER time;
     QueryPerformanceCounter (&time);
-    return (u64) (time.QuadPart / frequency_nanoseconds);
+    return (Time) (time.QuadPart / frequency_nanoseconds);
 }
 
 }
